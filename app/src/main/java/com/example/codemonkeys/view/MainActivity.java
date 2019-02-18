@@ -1,7 +1,9 @@
-package com.example.codemonkeys;
+package com.example.codemonkeys.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.codemonkeys.R;
 
 public class MainActivity extends AppCompatActivity {
 
