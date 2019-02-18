@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import android.util.Log;
+
 public class Repository {
     private Player currentPlayer;
 
@@ -12,6 +14,9 @@ public class Repository {
     }
 
     public void updateCurrentPlayer(Player p) {
+
         currentPlayer = p;
+        Log.d("Repository", "Created Player in Repository: "
+                + currentPlayer);
     }
 }

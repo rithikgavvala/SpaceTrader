@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -109,6 +110,29 @@ public class MainActivity extends AppCompatActivity{
 
 
         Button button = findViewById(R.id.add_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String name = playerNameField.getText().toString();
+                String difficulty = difficultySpinner.getSelectedItem().toString();
+                int sum = pilotProgress + fighterProgress + traderProgress + engineerProgress;
+                if(sum == 16) {
+                    player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
+                            difficulty);
+                    viewModel.updatePlayer(player);
+                    Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
+                    toast.show();
+                } else {
+                    Toast toast = Toast.makeText(v.getContext(),
+                            "Skill points must add to 16", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
+                    toast.show();
+                }
+
+
+                // Code here executes on main thread after user presses button
+            }
+        });
 
 //        for(int i = 0;)
         String[] skillState = new String[]{"0","1","2","3","4"};
@@ -135,8 +159,4 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-
-    public void onAddPressed(View view) {
-        finish();
-    }
 }

@@ -23,4 +23,19 @@ public class Player {
         credits = 1000;
         this.type = Spaceship.Gnat;
     }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
+    }
+
+    public String toString() {
+        return "Player " + characterName + " with pilot skill of " + pilot
+                + ", fighter skill of " + fighter
+                + ", trader skill of " + trader
+                + ", and engineer skill of " + engineer;
+    }
 }
