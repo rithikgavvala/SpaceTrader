@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
@@ -27,12 +28,23 @@ public class MainActivity extends AppCompatActivity{
 
     //Widgets used for binding and getting information
     private EditText playerNameField;
-    private Spinner pilotSpinner;
-    private Spinner fighterSpinner;
-    private Spinner traderSpinner;
-    private Spinner engineerSpinner;
+    private SeekBar fighterBar;
+    private SeekBar traderBar;
+    private SeekBar engineerBar;
+    private SeekBar pilotBar;
     private Spinner difficultySpinner;
-    private SeekBar difficultyBar;
+    private TextView pilotSkillTextView;
+    private TextView fighterSkillTextView;
+    private TextView traderSkillTextView;
+    private TextView engineerSkillTextView;
+    private int fighterProgress;
+    private int traderProgress;
+    private int engineerProgress;
+    private int pilotProgress;
+
+    private SeekBar.OnSeekBarChangeListener mlistener;
+
+
 
     //Data for player being set
     private Player player;
@@ -48,17 +60,57 @@ public class MainActivity extends AppCompatActivity{
         }
        //grab the dialog widgets so we can get info for later
          playerNameField = findViewById(R.id.player_name_field);
-         pilotSpinner = findViewById(R.id.pilot_spinner);
-         fighterSpinner = findViewById(R.id.fighter_spinner);
-         traderSpinner = findViewById(R.id.trader_spinner);
-         engineerSpinner = findViewById(R.id.engineer_spinner);
+//         pilotSpinner = findViewById(R.id.pilot_spinner);
+         fighterBar = findViewById(R.id.fighter_bar);
+         traderBar = findViewById(R.id.trader_bar);
+         engineerBar = findViewById(R.id.engineer_bar);
          difficultySpinner = (Spinner) findViewById(R.id.difficulty_spinner);
-        // difficultyBar = findViewById(R.id.difficulty_spinner);
+         pilotBar = findViewById(R.id.pilot_bar);
+
+         pilotSkillTextView = findViewById(R.id.pilotSkillTextView);
+         fighterSkillTextView = findViewById(R.id.fighterSkillTextView);
+         traderSkillTextView = findViewById(R.id.traderSkillTestView);
+         engineerSkillTextView = findViewById(R.id.engineerSkillTextView);
+
+
+         mlistener = new SeekBar.OnSeekBarChangeListener() {
+             @Override
+             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                 int id = seekBar.getId();
+                 if(id == R.id.pilot_bar) {
+                     pilotProgress = progress;
+                     pilotSkillTextView.setText("" + progress);
+                 } else if(id == R.id.fighter_bar) {
+                     fighterProgress = progress;
+                     fighterSkillTextView.setText("" + progress);
+                 } else if(id == R.id.trader_bar) {
+                     traderProgress = progress;
+                     traderSkillTextView.setText("" + progress);
+                 } else if(id == R.id.engineer_bar) {
+                     engineerProgress = progress;
+                     engineerSkillTextView.setText("" + progress);
+                 }
+             }
+
+             @Override
+             public void onStartTrackingTouch(SeekBar seekBar) {
+
+             }
+
+             @Override
+             public void onStopTrackingTouch(SeekBar seekBar) {
+
+             }
+         };
+         fighterBar.setOnSeekBarChangeListener(mlistener);
+        traderBar.setOnSeekBarChangeListener(mlistener);
+        engineerBar.setOnSeekBarChangeListener(mlistener);
+        pilotBar.setOnSeekBarChangeListener(mlistener);
 
 
         Button button = findViewById(R.id.add_button);
 
-
+//        for(int i = 0;)
         String[] skillState = new String[]{"0","1","2","3","4"};
 
 
@@ -66,23 +118,6 @@ public class MainActivity extends AppCompatActivity{
         difficulty.add("Easy");
         difficulty.add("Medium");
         difficulty.add("Hard");
-
-      //adapter to display the allowable numbers for the spinners
-        ArrayAdapter<String> pilotAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skillState);
-        pilotAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pilotSpinner.setAdapter(pilotAdapter);
-
-        ArrayAdapter<String> fighterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skillState);
-        fighterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fighterSpinner.setAdapter(fighterAdapter);
-
-        ArrayAdapter<String> traderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skillState);
-        traderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        traderSpinner.setAdapter(traderAdapter);
-
-        ArrayAdapter<String> engineerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, skillState);
-        engineerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        engineerSpinner.setAdapter(engineerAdapter);
 
         ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, difficulty);
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -104,6 +139,4 @@ public class MainActivity extends AppCompatActivity{
     public void onAddPressed(View view) {
         finish();
     }
-
-
 }
