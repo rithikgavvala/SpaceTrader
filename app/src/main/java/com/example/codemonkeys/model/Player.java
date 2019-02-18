@@ -7,7 +7,8 @@ public class Player {
     private int trader;
     private int engineer;
     private String difficulty;
-    private int creds;
+    private int credits;
+    private Spaceship type;
     // gnat spaceship needs to be created,
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
         characterName = name;
@@ -16,6 +17,7 @@ public class Player {
         trader = trad;
         engineer = engine;
         difficulty = diff;
-        creds = 1000;
+        credits = 1000;
+        this.type = Spaceship.Gnat;
     }
 }
