@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import java.util.List;
+
 public class Player {
     private String characterName;
     private int pilot;
@@ -9,7 +11,8 @@ public class Player {
     private String difficulty;
     private int credits;
     private Spaceship type;
-    // gnat spaceship needs to be created,
+
+
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
         characterName = name;
         pilot = pil;

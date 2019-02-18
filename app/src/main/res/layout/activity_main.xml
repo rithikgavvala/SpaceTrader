@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/player_name_field"
         android:layout_width="309dp"
         android:layout_height="38dp"
         android:layout_marginStart="72dp"
@@ -43,7 +43,7 @@
         android:text="Skill Point Allocation"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/player_name_field" />
 
     <TextView
         android:id="@+id/textView4"
@@ -90,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/pilot_spinner"
         android:layout_width="243dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
@@ -100,34 +100,34 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/fighter_spinner"
         android:layout_width="243dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/pilot_spinner" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/trader_spinner"
         android:layout_width="243dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/fighter_spinner" />
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/engineer_spinner"
         android:layout_width="243dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/trader_spinner" />
 
     <TextView
         android:id="@+id/textView8"
@@ -151,10 +151,10 @@
         android:text="Difficulty"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+        app:layout_constraintTop_toBottomOf="@+id/engineer_spinner" />
 
     <Spinner
-        android:id="@+id/spinner5"
+        android:id="@+id/difficulty_spinner"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -165,5 +165,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/add_button"
+        android:layout_width="382dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
