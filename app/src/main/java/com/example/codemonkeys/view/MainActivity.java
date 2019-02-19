@@ -1,162 +1,93 @@
 package com.example.codemonkeys.view;
 
-import android.arch.lifecycle.ViewModelProviders;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.example.codemonkeys.R;
-import com.example.codemonkeys.model.Player;
-import com.example.codemonkeys.model.Repository;
-import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
-    private ConfigurationViewModel viewModel;
 
+    private ImageView rocketShip;
+    private ImageView moon;
+    private ImageView title;
+    private Button start;
 
-    //Widgets used for binding and getting information
-    private EditText playerNameField;
-    private SeekBar fighterBar;
-    private SeekBar traderBar;
-    private SeekBar engineerBar;
-    private SeekBar pilotBar;
-    private Spinner difficultySpinner;
-    private TextView pilotSkillTextView;
-    private TextView fighterSkillTextView;
-    private TextView traderSkillTextView;
-    private TextView engineerSkillTextView;
-    private int fighterProgress;
-    private int traderProgress;
-    private int engineerProgress;
-    private int pilotProgress;
-
-    private SeekBar.OnSeekBarChangeListener mlistener;
-
-
-
-    //Data for player being set
-    private Player player;
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        moon.setVisibility(View.VISIBLE);
+        title.setVisibility(View.VISIBLE);
+        start.setVisibility(View.VISIBLE);
+        rocketShip.setVisibility(View.VISIBLE);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
-        //vamsi is great
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getSupportActionBar().setHomeButtonEnabled(false);
-        }
-       //grab the dialog widgets so we can get info for later
-         playerNameField = findViewById(R.id.player_name_field);
-//         pilotSpinner = findViewById(R.id.pilot_spinner);
-         fighterBar = findViewById(R.id.fighter_bar);
-         traderBar = findViewById(R.id.trader_bar);
-         engineerBar = findViewById(R.id.engineer_bar);
-         difficultySpinner = (Spinner) findViewById(R.id.difficulty_spinner);
-         pilotBar = findViewById(R.id.pilot_bar);
 
-         pilotSkillTextView = findViewById(R.id.pilotSkillTextView);
-         fighterSkillTextView = findViewById(R.id.fighterSkillTextView);
-         traderSkillTextView = findViewById(R.id.traderSkillTestView);
-         engineerSkillTextView = findViewById(R.id.engineerSkillTextView);
+        rocketShip = findViewById(R.id.rocketShip);
+        moon = findViewById(R.id.moon);
+        title = findViewById(R.id.title);
+
+        final TranslateAnimation animation = new TranslateAnimation(0,0, 0, -2000);
+        animation.setDuration(1500);
+        animation.setFillAfter(false);
+        animation.setAnimationListener(new MyAnimationListener());
 
 
-         mlistener = new SeekBar.OnSeekBarChangeListener() {
-             @Override
-             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                 int id = seekBar.getId();
-                 if(id == R.id.pilot_bar) {
-                     pilotProgress = progress;
-                     pilotSkillTextView.setText("" + progress);
-                 } else if(id == R.id.fighter_bar) {
-                     fighterProgress = progress;
-                     fighterSkillTextView.setText("" + progress);
-                 } else if(id == R.id.trader_bar) {
-                     traderProgress = progress;
-                     traderSkillTextView.setText("" + progress);
-                 } else if(id == R.id.engineer_bar) {
-                     engineerProgress = progress;
-                     engineerSkillTextView.setText("" + progress);
-                 }
-             }
-
-             @Override
-             public void onStartTrackingTouch(SeekBar seekBar) {
-
-             }
-
-             @Override
-             public void onStopTrackingTouch(SeekBar seekBar) {
-
-             }
-         };
-         fighterBar.setOnSeekBarChangeListener(mlistener);
-        traderBar.setOnSeekBarChangeListener(mlistener);
-        engineerBar.setOnSeekBarChangeListener(mlistener);
-        pilotBar.setOnSeekBarChangeListener(mlistener);
+        //This code sets up our button at bottom of screen to add a new course
+        start =  findViewById(R.id.button_start_game);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rocketShip.startAnimation(animation);
 
 
-        Button button = findViewById(R.id.add_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String name = playerNameField.getText().toString();
-                String difficulty = difficultySpinner.getSelectedItem().toString();
-                int sum = pilotProgress + fighterProgress + traderProgress + engineerProgress;
-                if(sum == 16) {
-                    player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
-                            difficulty);
-                    viewModel.updatePlayer(player);
-                    Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
-                    toast.show();
-                } else {
-                    Toast toast = Toast.makeText(v.getContext(),
-                            "Skill points must add to 16", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
-                    toast.show();
-                }
-
-
-                // Code here executes on main thread after user presses button
             }
         });
 
-//        for(int i = 0;)
-        String[] skillState = new String[]{"0","1","2","3","4"};
-
-
-        List<String> difficulty = new ArrayList<String>();
-        difficulty.add("Easy");
-        difficulty.add("Medium");
-        difficulty.add("Hard");
-
-        ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, difficulty);
-        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        difficultySpinner.setAdapter(difficultyAdapter);
-        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
     }
+    private class MyAnimationListener implements Animation.AnimationListener{
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
+        @Override
+        public void onAnimationStart(Animation animation) {
+            moon.setVisibility(View.INVISIBLE);
+            title.setVisibility(View.INVISIBLE);
+            start.setVisibility(View.INVISIBLE);
 
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+            startActivity(intent);
+            rocketShip.setVisibility(View.INVISIBLE);
+
+
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
     }
+
 
 
 }
+
+

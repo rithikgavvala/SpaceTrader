@@ -5,235 +5,60 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.codemonkeys.view.MainActivity">
+    android:background="@drawable/background">
 
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    <ImageView
+        android:id="@+id/moon"
+        android:layout_width="wrap_content"
+        android:layout_height="177dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/moon" />
 
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="381dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="306dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="Player Configuration"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/player_name_field"
-        android:layout_width="309dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="textPersonName|text"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/moon"
+        app:srcCompat="@drawable/spacetraderlogo" />
 
-    <TextView
-        android:id="@+id/SkillTextView3"
-        android:layout_width="279dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Skill Point Allocation"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_name_field" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="60dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Pilot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SkillTextView3" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="60dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Fighter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="60dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Trader"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="60dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Engineer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <SeekBar
-        android:id="@+id/pilot_bar"
-        android:layout_width="243dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:max="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/SkillTextView3" />
-
-    <SeekBar
-        android:id="@+id/fighter_bar"
-        android:layout_width="243dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
-        android:max="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/pilot_bar" />
-
-    <SeekBar
-        android:id="@+id/trader_bar"
-        android:layout_width="243dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:max="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/fighter_bar" />
-
-    <SeekBar
-        android:id="@+id/engineer_bar"
-        android:layout_width="243dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:max="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/trader_bar" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Name"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/SkillTextView3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="193dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Difficulty"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/engineer_bar" />
-
-    <Spinner
-        android:id="@+id/difficulty_spinner"
-        android:layout_width="363dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="382dp"
-        android:layout_height="45dp"
+    <ImageView
+        android:id="@+id/rocketShip"
+        android:layout_width="103dp"
+        android:layout_height="242dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Create"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/spaceship" />
 
-    <TextView
-        android:id="@+id/pilotSkillTextView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pilot_bar"
-        app:layout_constraintTop_toBottomOf="@+id/SkillTextView3"
-        tools:text="0" />
-
-    <TextView
-        android:id="@+id/fighterSkillTextView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fighter_bar"
-        app:layout_constraintTop_toBottomOf="@+id/pilotSkillTextView"
-        tools:text="0" />
-
-    <TextView
-        android:id="@+id/traderSkillTestView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/trader_bar"
-        app:layout_constraintTop_toBottomOf="@+id/fighterSkillTextView"
-        tools:text="0" />
-
-    <TextView
-        android:id="@+id/engineerSkillTextView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+    <Button
+        android:id="@+id/button_start_game"
+        android:layout_width="349dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
-        android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/roboto_bold"
+        android:text="START"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/engineer_bar"
-        app:layout_constraintTop_toBottomOf="@+id/traderSkillTestView"
-        tools:text="0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rocketShip" />
 
 </android.support.constraint.ConstraintLayout>
