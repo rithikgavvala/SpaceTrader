@@ -1,6 +1,7 @@
 package com.example.codemonkeys.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -135,6 +136,8 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                 }
+                Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
+                startActivity(intent);
 
 
                 // Code here executes on main thread after user presses button

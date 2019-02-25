@@ -19,6 +19,9 @@
         <activity
             android:name=".view.ConfigurationActivity"
             android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.UniverseGenerationActivity"
+            android:parentActivityName=".view.ConfigurationActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

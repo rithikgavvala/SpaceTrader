@@ -36,12 +36,13 @@
         android:id="@+id/button4"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="150dp"
         android:background="@color/colorAccent"
         android:text="<"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/button"
         tools:layout_editor_absoluteY="314dp" />
 
     <View
