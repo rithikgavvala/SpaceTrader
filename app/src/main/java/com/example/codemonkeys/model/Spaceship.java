@@ -13,6 +13,13 @@ public enum Spaceship {
     Wasp(14);
 
     private int fuelTankSize;
+    private double hullStrength;
+    private int cargoBays;
+    private int numWeaponSlots;
+    private int shieldSlots;
+    private int gadgetSlots;
+    private int crewQuarters;
+    private int travellingRange;
 
     private Spaceship(int fuelTankSize){
         this.fuelTankSize = fuelTankSize;

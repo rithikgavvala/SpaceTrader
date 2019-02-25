@@ -4,24 +4,24 @@ import java.util.List;
 
 public class Player {
     private String characterName;
-    private int pilot;
-    private int fighter;
-    private int trader;
-    private int engineer;
+    private int pilotSkill;
+    private int fighterSkill;
+    private int traderSkill;
+    private int engineerSkill;
     private String difficulty;
     private int credits;
-    private Spaceship type;
+    private Spaceship ship;
 
 
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
         characterName = name;
-        pilot = pil;
-        fighter = fight;
-        trader = trad;
-        engineer = engine;
+        pilotSkill = pil;
+        fighterSkill = fight;
+        traderSkill = trad;
+        engineerSkill = engine;
         difficulty = diff;
         credits = 1000;
-        this.type = Spaceship.Gnat;
+        this.ship = Spaceship.Gnat;
     }
 
     public String getCharacterName() {
@@ -33,9 +33,9 @@ public class Player {
     }
 
     public String toString() {
-        return "Player " + characterName + " with pilot skill of " + pilot
-                + ", fighter skill of " + fighter
-                + ", trader skill of " + trader
-                + ", and engineer skill of " + engineer;
+        return "Player " + characterName + " with pilot skill of " + pilotSkill
+                + ", fighter skill of " + fighterSkill
+                + ", trader skill of " + traderSkill
+                + ", and engineer skill of " + engineerSkill;
     }
 }
