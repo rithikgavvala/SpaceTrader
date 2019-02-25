@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.SolarSystem;
+import com.example.codemonkeys.model.Universe;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
@@ -45,18 +47,19 @@ public class UniverseGenerationActivity extends AppCompatActivity {
 //        LineData lineData = new LineData(dataSet);
 //        chart.setData(lineData);
 //        chart.invalidate(); // refresh
-
+        Universe u = Universe.getInstance();
+        SolarSystem[] solarSystemsArray = u.getUniverse();
         List<Entry> location = new ArrayList<Entry>();
         int x;
         int y;
-        for(int i = 0; i < 10; i++){
-            x = (int) (Math.random() * 100);
-            y = (int) (Math.random() * 100);
+        for (int i = 0; i < solarSystemsArray.length; i++) {
+            x = solarSystemsArray[i].getLocation().getX();
+            y = solarSystemsArray[i].getLocation().getY();
             location.add(new Entry(x,y));
         }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
         dataSet.setColor(Color.WHITE);
-
+        dataSet.setScatterShapeSize(20);
         ScatterData scatterData = new ScatterData(dataSet);
         chart.setData(scatterData);
 

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class Universe {
@@ -138,7 +139,7 @@ public class Universe {
                     "Zuul"            // From the first Ghostbusters movie};
             };
 
-    private final int MAXSOLARSYSTEM = 10;
+    private final int MAXSOLARSYSTEM = 15;
 
     private static Universe universe = new Universe();
 
@@ -220,5 +221,9 @@ public class Universe {
             int num = (int) (Math.random() * ((max - min) + 1)) + min;
             systems.add(SolarSystemNames[num]);
         }
+    }
+
+    public SolarSystem[] getUniverse() {
+        return solarSystems;
     }
 }
