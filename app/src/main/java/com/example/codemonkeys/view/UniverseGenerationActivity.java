@@ -1,5 +1,6 @@
 package com.example.codemonkeys.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -54,11 +55,14 @@ public class UniverseGenerationActivity extends AppCompatActivity {
             location.add(new Entry(x,y));
         }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
-        dataSet.setColor(16711680);
+        dataSet.setColor(Color.WHITE);
 
         ScatterData scatterData = new ScatterData(dataSet);
         chart.setData(scatterData);
+
+
         chart.invalidate();
+
 
 
 
