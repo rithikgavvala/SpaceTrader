@@ -13,13 +13,15 @@ import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UniverseGenerationActivity extends AppCompatActivity {
+public class UniverseGenerationActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +57,49 @@ public class UniverseGenerationActivity extends AppCompatActivity {
         for (int i = 0; i < solarSystemsArray.length; i++) {
             x = solarSystemsArray[i].getLocation().getX();
             y = solarSystemsArray[i].getLocation().getY();
-            location.add(new Entry(x,y));
+            location.add(new Entry(x,y, solarSystemsArray[i]));
         }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
-        dataSet.setColor(Color.WHITE);
-        dataSet.setScatterShapeSize(20);
+        dataSet.setScatterShapeSize(30);
+        dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
+
+
         ScatterData scatterData = new ScatterData(dataSet);
         chart.setData(scatterData);
+        chart.setLogEnabled(true);
+
+        chart.getDescription().setEnabled(false);
+        chart.setOnChartValueSelectedListener(this);
+
+        chart.setDrawGridBackground(false);
+        chart.setTouchEnabled(true);
+        chart.setMaxHighlightDistance(50f);
+
+        // enable scaling and dragging
+        chart.setDragEnabled(true);
+        chart.setScaleEnabled(true);
+
+        chart.setMaxVisibleValueCount(200);
+        chart.setPinchZoom(true);
+
+
+
 
 
         chart.invalidate();
 
 
 
+
+    }
+
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+
+    }
+
+    @Override
+    public void onNothingSelected() {
 
     }
 }
