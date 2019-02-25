@@ -2,11 +2,16 @@ package com.example.codemonkeys.model;
 
 class SolarSystem {
     String systemName;
-    private int coordinateX;
-    private int coordinateY;
+    private Location location;
+    private TechLevel techLevel;
+    private PoliticalSystem politicalSystem;
 
-    public SolarSystem(String name) {
-        this.systemName = name;
+    public SolarSystem(String systemName, Location loc, TechLevel tl, PoliticalSystem pol) {
+        this.location = loc;
+        this.techLevel = tl;
+        this.politicalSystem = pol;
+        this.location = loc;
     }
 
 }
+

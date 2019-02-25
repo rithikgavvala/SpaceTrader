@@ -1,11 +1,21 @@
 package com.example.codemonkeys.model;
 
+import android.util.Log;
+
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
 public class Universe {
-    private Set<SolarSystem> systems;
+    private Set<String> systems;
+    private Set<Location> locations;
+    private TechLevel[] actualLevels;
+    private PoliticalSystem[] actualPoliticalSystems;
+
+    private SolarSystem[] solarSystems;
+
+
     private String[] SolarSystemNames =
             {"Acamar",
                     "Adahn",        // The alternate personality for The Nameless One in "Planescape: Torment"
@@ -138,25 +148,76 @@ public class Universe {
     }
 
     private Universe() {
-        systems = new HashSet<SolarSystem>();
-        generateUniverse();
+        systems = new HashSet<String>();
+        locations = new HashSet<Location>();
     }
 
     public void generateUniverse() {
-        generateSystems();
+        generateSystemNames();
+        scatterSystemLocations();
+        generateTechLevels();
+        generatePoliticalSystems();
+        solarSystems = new SolarSystem[MAXSOLARSYSTEM];
+
+        Iterator<String> it = systems.iterator();
+        Iterator<Location> loc = locations.iterator();
+        String content = "";
+        int i = 0;
+        while (!it.hasNext()) {
+            String sys = it.next();
+            Location locat = loc.next();
+            content += "System name: " + sys + "\n";
+            content += "Location: " + locat + "\n";
+            content += "Tech Level: " + actualLevels[i].getName() + "\n";
+            content += "Poltical System: " + actualPoliticalSystems[i].getName() + "\n \n";
+            solarSystems[i] = new SolarSystem(sys, locat,
+                    actualLevels[i], actualPoliticalSystems[i]);
+        }
 
     }
 
+    public static void largeLog(String tag, String content) {
+        if (content.length() > 4000) {
+            Log.d(tag, content.substring(0, 4000));
+            largeLog(tag, content.substring(4000));
+        } else {
+            Log.d(tag, content);
+        }
+    }
+
+    public void generateTechLevels() {
+        TechLevel[] possibleLevels = TechLevel.values();
+        actualLevels = new TechLevel[MAXSOLARSYSTEM];
+        for (int i = 0; i < MAXSOLARSYSTEM; i++) {
+            actualLevels[i] = possibleLevels[(int) (Math.random() * (MAXSOLARSYSTEM + 1))];
+        }
+    }
+
+    public void generatePoliticalSystems() {
+        PoliticalSystem[] possiblePoliticalSystems = PoliticalSystem.values();
+        actualPoliticalSystems = new PoliticalSystem[MAXSOLARSYSTEM];
+        for (int i = 0; i < MAXSOLARSYSTEM; i++) {
+            actualPoliticalSystems[i] = possiblePoliticalSystems[(int) (Math.random() * (MAXSOLARSYSTEM + 1))];
+        }
+    }
     public void scatterSystemLocations() {
+        int max = 150;
+        int min = 0;
+        while (locations.size() != MAXSOLARSYSTEM) {
+            int x = (int) (Math.random() * ((max - min) + 1)) + min;
+            int y = (int) (Math.random() * ((max - min) + 1)) + min;
+            locations.add(new Location(x, y));
+        }
+
 
     }
 
-    public void generateSystems() {
+    public void generateSystemNames() {
         int max = SolarSystemNames.length - 1;
         int min = 0;
         while (systems.size() != MAXSOLARSYSTEM) {
             int num = (int) (Math.random() * ((max - min) + 1)) + min;
-            systems.add(new SolarSystem(SolarSystemNames[num]));
+            systems.add(SolarSystemNames[num]);
         }
     }
 }

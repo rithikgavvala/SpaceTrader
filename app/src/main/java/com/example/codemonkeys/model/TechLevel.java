@@ -16,4 +16,8 @@ public enum TechLevel {
     TechLevel(int rank) {
         this.rank = rank;
     }
+
+    public String getName() {
+        return name();
+    }
 }
