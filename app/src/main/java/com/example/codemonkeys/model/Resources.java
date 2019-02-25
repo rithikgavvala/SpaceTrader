@@ -1,6 +1,6 @@
 package com.example.codemonkeys.model;
 
-public enum PoliticalSystem {
+public enum Resources {
     NOSPECIALRESOURCES,
     MINERALRICH,
     MINERALPOOR,

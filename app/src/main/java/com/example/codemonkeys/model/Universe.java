@@ -4,14 +4,13 @@ import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 
 public class Universe {
     private Set<String> systems;
     private Set<Location> locations;
     private TechLevel[] actualLevels;
-    private PoliticalSystem[] actualPoliticalSystems;
+    private Resources[] actualResources;
 
     private SolarSystem[] solarSystems;
 
@@ -163,25 +162,27 @@ public class Universe {
         Iterator<Location> loc = locations.iterator();
         String content = "";
         int i = 0;
-        while (!it.hasNext()) {
+        while (it.hasNext()) {
             String sys = it.next();
             Location locat = loc.next();
             content += "System name: " + sys + "\n";
             content += "Location: " + locat + "\n";
             content += "Tech Level: " + actualLevels[i].getName() + "\n";
-            content += "Poltical System: " + actualPoliticalSystems[i].getName() + "\n \n";
+            content += "Resources: " + actualResources[i].getName() + "\n \n";
             solarSystems[i] = new SolarSystem(sys, locat,
-                    actualLevels[i], actualPoliticalSystems[i]);
+                    actualLevels[i], actualResources[i]);
+            i++;
         }
+        largeLog("Universe", content);
 
     }
 
     public static void largeLog(String tag, String content) {
         if (content.length() > 4000) {
-            Log.d(tag, content.substring(0, 4000));
+            Log.i(tag, content.substring(0, 4000));
             largeLog(tag, content.substring(4000));
         } else {
-            Log.d(tag, content);
+            Log.i(tag, content);
         }
     }
 
@@ -189,15 +190,15 @@ public class Universe {
         TechLevel[] possibleLevels = TechLevel.values();
         actualLevels = new TechLevel[MAXSOLARSYSTEM];
         for (int i = 0; i < MAXSOLARSYSTEM; i++) {
-            actualLevels[i] = possibleLevels[(int) (Math.random() * (MAXSOLARSYSTEM + 1))];
+            actualLevels[i] = possibleLevels[(int) (Math.random() * (TechLevel.values().length))];
         }
     }
 
     public void generatePoliticalSystems() {
-        PoliticalSystem[] possiblePoliticalSystems = PoliticalSystem.values();
-        actualPoliticalSystems = new PoliticalSystem[MAXSOLARSYSTEM];
+        Resources[] possibleResources = Resources.values();
+        actualResources = new Resources[MAXSOLARSYSTEM];
         for (int i = 0; i < MAXSOLARSYSTEM; i++) {
-            actualPoliticalSystems[i] = possiblePoliticalSystems[(int) (Math.random() * (MAXSOLARSYSTEM + 1))];
+            actualResources[i] = possibleResources[(int) (Math.random() * (Resources.values().length))];
         }
     }
     public void scatterSystemLocations() {

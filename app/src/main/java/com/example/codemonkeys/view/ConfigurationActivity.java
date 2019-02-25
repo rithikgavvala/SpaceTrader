@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.Player;
+import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
 import java.util.ArrayList;
@@ -130,6 +131,8 @@ public class ConfigurationActivity extends AppCompatActivity{
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
+                    Universe universe = Universe.getInstance();
+                    universe.generateUniverse();
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),
                             "Skill points must add to 16", Toast.LENGTH_SHORT);
