@@ -12,4 +12,7 @@ public class PlayerInteractor {
     public Player getPlayer(Player p) {
         return myRepository.getPlayer();
     }
+    public void sendSolarSystemObject(SolarSystem s){
+        myRepository.getPlayer().updateSolarSystem(s);
+    }
 }

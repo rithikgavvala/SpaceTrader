@@ -139,6 +139,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                 }
+
                 Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
                 startActivity(intent);
 

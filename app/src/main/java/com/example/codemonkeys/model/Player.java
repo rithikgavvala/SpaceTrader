@@ -11,6 +11,7 @@ public class Player {
     private String difficulty;
     private int credits;
     private Spaceship ship;
+    private SolarSystem system;
 
 
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
@@ -22,6 +23,9 @@ public class Player {
         difficulty = diff;
         credits = 1000;
         this.ship = Spaceship.Gnat;
+    }
+    public void updateSolarSystem(SolarSystem s){
+        this.system = s;
     }
 
     public String getCharacterName() {

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
+import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Random;
 
 
 public class UniverseGenerationActivity extends AppCompatActivity implements OnChartValueSelectedListener {
@@ -35,6 +36,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView policeValue;
     private TextView piratesValue;
     private TextView distanceValue;
+    private ConfigurationViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,9 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         dataSet.setScatterShapeSize(30);
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
+        //Assigning random solar system in universe to player
+        viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(15)]);
+
 
         ScatterData scatterData = new ScatterData(dataSet);
         chart.setData(scatterData);
@@ -87,9 +92,6 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         chart.setMaxVisibleValueCount(200);
         chart.setPinchZoom(true);
-
-
-
 
 
         chart.invalidate();
