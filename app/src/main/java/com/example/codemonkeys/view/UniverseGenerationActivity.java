@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
@@ -16,12 +17,24 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class UniverseGenerationActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+    private ScatterChart chart;
+    private TextView sizeValue;
+    private TextView techLevelValue;
+    private TextView governmentValue;
+    private TextView resourceValue;
+    private TextView policeValue;
+    private TextView piratesValue;
+    private TextView distanceValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +44,17 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         setContentView(R.layout.universe_generation_activity);
 
-        ScatterChart chart = (ScatterChart) findViewById(R.id.scatterChart);
+        chart = (ScatterChart) findViewById(R.id.scatterChart);
+        sizeValue = (TextView) findViewById(R.id.sizeValue);
+        techLevelValue = (TextView) findViewById(R.id.techLevelValue);
+        governmentValue = (TextView) findViewById(R.id.governmentValue);
+        resourceValue = (TextView) findViewById(R.id.resourceValue);
+        policeValue = (TextView) findViewById(R.id.policeValue);
+        piratesValue = (TextView) findViewById(R.id.piratesValue);
+        distanceValue = (TextView) findViewById(R.id.distanceValue);
 
-//        YourData[] dataObjects = ...;
-//
-//        List<Entry> entries = new ArrayList<Entry>();
-//
-//        for (YourData data : dataObjects) {
-//
-//            // turn your data into Entry objects
-//            entries.add(new Entry(data.getValueX(), data.getValueY()));
-//        }
-//
-//        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
-//        dataSet.setColor(...);
-//        dataSet.setValueTextColor(...); // styling, ...
-//        LineData lineData = new LineData(dataSet);
-//        chart.setData(lineData);
-//        chart.invalidate(); // refresh
+
+
         Universe u = Universe.getInstance();
         SolarSystem[] solarSystemsArray = u.getUniverse();
         List<Entry> location = new ArrayList<Entry>();
@@ -57,7 +63,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         for (int i = 0; i < solarSystemsArray.length; i++) {
             x = solarSystemsArray[i].getLocation().getX();
             y = solarSystemsArray[i].getLocation().getY();
-            location.add(new Entry(x,y, solarSystemsArray[i]));
+            location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
         }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
         dataSet.setScatterShapeSize(30);
@@ -95,6 +101,16 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
+        SolarSystem solarSystem = (SolarSystem) e.getData();
+        //sizeValue.setText(solarSystem.getSize());
+        techLevelValue.setText(solarSystem.getTechLevel().toString());
+        //governmentValue.setText(solarSystem.get);
+        resourceValue.setText(solarSystem.getResources().toString());
+        distanceValue.setText(solarSystem.getLocation().toString());
+
+
+
+
 
     }
 

@@ -201,7 +201,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/sizeValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -214,7 +214,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/techLevelValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -224,10 +224,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/sizeValue" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/governmentValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -237,10 +237,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintTop_toBottomOf="@+id/techLevelValue" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/resourceValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -250,10 +250,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/governmentValue" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/policeValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -263,10 +263,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+        app:layout_constraintTop_toBottomOf="@+id/resourceValue" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/piratesValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -276,10 +276,10 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/policeValue" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/distanceValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -289,6 +289,6 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        app:layout_constraintTop_toBottomOf="@+id/piratesValue" />
 
 </android.support.constraint.ConstraintLayout>
