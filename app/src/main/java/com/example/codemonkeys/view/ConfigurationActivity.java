@@ -143,15 +143,12 @@ public class ConfigurationActivity extends AppCompatActivity{
                 Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
                 startActivity(intent);
 
-
                 // Code here executes on main thread after user presses button
             }
         });
 
 
         String[] skillState = new String[]{"0","1","2","3","4"};
-
-
         List<String> difficulty = new ArrayList<String>();
         difficulty.add("Easy");
         difficulty.add("Medium");
