@@ -18,7 +18,6 @@ import java.util.Random;
 
 
 public class MarketActivity extends AppCompatActivity {
-    private Button market;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -76,7 +76,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         //Assigning random solar system in universe to player
-        viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(solarSystemsArray.length)]);
+        //viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(solarSystemsArray.length)]);
 
 
         ScatterData scatterData = new ScatterData(dataSet);
