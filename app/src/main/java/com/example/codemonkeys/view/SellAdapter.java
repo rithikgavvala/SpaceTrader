@@ -49,8 +49,8 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ItemViewHolder
 
         Log.d("APP", "Binding: " + position + " " + sellItemsList.get(position));
 
-        holder.name.setText(item.basePrice);
-        holder.price.setText(student.getName());
+        holder.name.setText(Enum);
+        holder.price.setText(item.getBasePrice());
 
 
     }

@@ -12,7 +12,7 @@ public enum TradeGood {
     Narcotics(5,0,5,3500,-125,150),
     Robots(6,4,7,5000,-150,100);
 
-    private int basePrice;
+    private double basePrice;
     private int MTLP;
     private int MTLU;
     private int TTP;
@@ -24,9 +24,14 @@ public enum TradeGood {
     private int MTL;
     private int MTH;
 
-    private TradeGood(int MTLP, int MTLU, int TTP, int basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.Var = Var;}
+    private TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.Var = Var;}
 
     public int getMTLP(){
         return MTLP;
     }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
 }
