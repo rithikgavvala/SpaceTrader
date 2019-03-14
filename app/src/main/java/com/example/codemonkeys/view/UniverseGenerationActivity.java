@@ -3,8 +3,11 @@ package com.example.codemonkeys.view;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+import android.content.Intent;
+import android.widget.Button;
 
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
@@ -37,6 +40,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView piratesValue;
     private TextView distanceValue;
     private ConfigurationViewModel viewModel;
+    private Button market;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +59,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         policeValue = (TextView) findViewById(R.id.policeValue);
         piratesValue = (TextView) findViewById(R.id.piratesValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
-
-
+        market = findViewById(R.id.button5);
 
         Universe u = Universe.getInstance();
         SolarSystem[] solarSystemsArray = u.getUniverse();
@@ -72,7 +76,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         //Assigning random solar system in universe to player
-        viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(15)]);
+        viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(solarSystemsArray.length)]);
 
 
         ScatterData scatterData = new ScatterData(dataSet);
@@ -96,9 +100,11 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         chart.invalidate();
 
-
-
-
+        market.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(UniverseGenerationActivity.this, MarketActivity.class));
+            }
+        });
     }
 
     @Override
@@ -111,13 +117,13 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         distanceValue.setText(solarSystem.getLocation().toString());
 
 
-
-
-
     }
+
+
 
     @Override
     public void onNothingSelected() {
 
     }
+
 }
