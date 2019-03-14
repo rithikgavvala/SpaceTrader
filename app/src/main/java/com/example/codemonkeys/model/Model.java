@@ -25,4 +25,8 @@ public class Model {
         return (PlayerInteractor) interactorMap.get("Player");
     }
 
+    public MarketInteractor getMarketInteractor() {
+        return (MarketInteractor) interactorMap.get("Market");
+    }
+
 }

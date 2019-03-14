@@ -47,7 +47,7 @@ public class SolarSystem {
         this.resources = resources;
     }
 
-    private List<TradeGood> findGoodsAvailabletoSell(){
+    public List<TradeGood> findGoodsAvailabletoSell(){
         List<TradeGood> list = new ArrayList<TradeGood>();
         for(TradeGood t: TradeGood.values()){
             if(techLevel.getRank() >= t.getMTLP()){

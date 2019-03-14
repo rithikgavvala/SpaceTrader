@@ -1,4 +1,4 @@
-package edu.gatech.cs2340.lab3newcomponents.views;
+package com.example.codemonkeys.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,17 +14,15 @@ import com.example.codemonkeys.model.TradeGood;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.gatech.cs2340.lab3newcomponents.R;
-import edu.gatech.cs2340.lab3newcomponents.entity.Student;
-
 /**
  * Adapts the list of students in the model to be a list of graphical elements in view
  */
-public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ItemViewHolder> {
+public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ItemViewHolder> {
 
     /** a copy of the list of students in the model */
     //TODO call function to create sellItemsList
     private List<TradeGood> sellItemsList = new ArrayList<>();
+    private List<TradeGood> buyItemsList = new ArrayList<>();
 
     /** a listener for a touch event on the student */
     private OnStudentClickListener listener;
@@ -49,8 +47,8 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ItemViewHolder
 
         Log.d("APP", "Binding: " + position + " " + sellItemsList.get(position));
 
-        holder.name.setText(Enum);
-        holder.price.setText(item.getBasePrice());
+        holder.name.setText(item.toString());
+        holder.price.setText(item.getBasePrice() + "");
 
 
     }
@@ -87,7 +85,7 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ItemViewHolder
                     int position = getAdapterPosition();
 
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onStudentClicked(sellItemsList.get(position));
+                        listener.onItemClicked(sellItemsList.get(position));
                     }
                 }
             });
@@ -96,7 +94,7 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ItemViewHolder
     }
 
     public interface OnStudentClickListener {
-        void onStudentClicked(TradeGood item);
+        void onItemClicked(TradeGood item);
     }
 
     public void setOnStudentClickListener(OnStudentClickListener listener) {

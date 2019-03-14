@@ -1,10 +1,8 @@
 package com.example.codemonkeys.view;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -14,8 +12,6 @@ import android.widget.Button;
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
-import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
@@ -23,13 +19,8 @@ import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 
 public class UniverseGenerationActivity extends AppCompatActivity implements OnChartValueSelectedListener {

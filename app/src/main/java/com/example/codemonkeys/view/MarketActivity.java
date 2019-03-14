@@ -15,6 +15,6 @@ import com.example.codemonkeys.viewmodel.MarketViewModel;
 
 
 public class MarketActivity extends AppCompatActivity {
-    
+
 
 }
