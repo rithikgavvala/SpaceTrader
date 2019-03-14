@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import android.util.Log;
+
 import java.util.List;
 
 public class Player {
@@ -25,6 +27,7 @@ public class Player {
         this.ship = Spaceship.Gnat;
     }
     public void updateSolarSystem(SolarSystem s){
+        Log.d("Solar System Player",s.getSystemName());
         this.system = s;
     }
 

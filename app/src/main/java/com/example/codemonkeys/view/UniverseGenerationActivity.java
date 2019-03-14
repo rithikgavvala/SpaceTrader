@@ -1,8 +1,10 @@
 package com.example.codemonkeys.view;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -48,9 +50,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
-
         setContentView(R.layout.universe_generation_activity);
-
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         chart = (ScatterChart) findViewById(R.id.scatterChart);
         sizeValue = (TextView) findViewById(R.id.sizeValue);
         techLevelValue = (TextView) findViewById(R.id.techLevelValue);
@@ -67,6 +68,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         int x;
         int y;
         for (int i = 0; i < solarSystemsArray.length; i++) {
+            //Log.d("Solar System", solarSystemsArray[i].getSystemName());
             x = solarSystemsArray[i].getLocation().getX();
             y = solarSystemsArray[i].getLocation().getY();
             location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
@@ -76,7 +78,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         //Assigning random solar system in universe to player
-        //viewModel.generatePlayerSolarSystem(solarSystemsArray[new Random().nextInt(solarSystemsArray.length)]);
+        viewModel.generatePlayerSolarSystem(solarSystemsArray[(int)(Math.random() * 15)]);
 
 
         ScatterData scatterData = new ScatterData(dataSet);
