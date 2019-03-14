@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolarSystem {
-    String systemName;
+    private String systemName;
     private Location location;
     private TechLevel techLevel;
     private Resources resources;
     private List<TradeGood> listofResources;
 
     public SolarSystem(String systemName, Location loc, TechLevel tl, Resources pol) {
+        this.systemName = systemName;
         this.location = loc;
         this.techLevel = tl;
         this.resources = pol;
@@ -28,6 +29,10 @@ public class SolarSystem {
 
     public TechLevel getTechLevel() {
         return techLevel;
+    }
+
+    public String getSystemName(){
+        return systemName;
     }
 
     public void setTechLevel(TechLevel techLevel) {
