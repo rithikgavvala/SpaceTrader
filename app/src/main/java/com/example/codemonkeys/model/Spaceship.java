@@ -22,6 +22,10 @@ public enum Spaceship {
         cargoList = new TradeGood[cargoMax];
     }
 
+    public TradeGood[] getCargoList(){
+        return cargoList;
+    }
+
 
 
 

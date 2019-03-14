@@ -46,8 +46,15 @@ public class SolarSystem {
     public void setResources(Resources resources) {
         this.resources = resources;
     }
+
     private List<TradeGood> findGoodsAvailabletoSell(){
-        return new ArrayList<>();
+        List<TradeGood> list = new ArrayList<TradeGood>();
+        for(TradeGood t: TradeGood.values()){
+            if(techLevel.getRank() >= t.getMTLP()){
+                list.add(t);
+            }
+        }
+        return list;
     }
 
     //TODO put a method here and add to constructor which allows you to list what items can be sold

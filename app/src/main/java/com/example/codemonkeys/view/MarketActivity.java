@@ -23,6 +23,8 @@ public class MarketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.market_activity);
+
+        //if sell is selected, then call sell method
     }
 
 }
