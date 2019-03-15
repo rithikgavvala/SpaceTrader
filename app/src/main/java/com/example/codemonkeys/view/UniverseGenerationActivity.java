@@ -34,6 +34,11 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView piratesValue;
     private TextView distanceValue;
     private ConfigurationViewModel viewModel;
+
+    private Button leftArrow;
+    private Button rightArrow;
+    private Button buyButton;
+    private Button sellButton;
     private Button market;
 
 
@@ -52,6 +57,9 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         policeValue = (TextView) findViewById(R.id.policeValue);
         piratesValue = (TextView) findViewById(R.id.piratesValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
+        buyButton = findViewById(R.id.buyButton);
+        sellButton = findViewById(R.id.sellButton);
+
         market = findViewById(R.id.button5);
 
         Universe u = Universe.getInstance();
@@ -94,11 +102,17 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         chart.invalidate();
 
-        market.setOnClickListener(new View.OnClickListener() {
+        sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(UniverseGenerationActivity.this, MarketActivity.class));
             }
         });
+
+        buyButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(UniverseGenerationActivity.this, MarketActivity.class));
+            }
+        } );
     }
 
     @Override
