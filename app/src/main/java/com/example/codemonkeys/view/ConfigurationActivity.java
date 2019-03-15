@@ -48,6 +48,7 @@ public class ConfigurationActivity extends AppCompatActivity{
     private ImageView moon;
     private ImageView title;
     private Button start;
+    private TextView itemMessage;
 
     private SeekBar.OnSeekBarChangeListener mlistener;
 
@@ -77,7 +78,8 @@ public class ConfigurationActivity extends AppCompatActivity{
          difficultySpinner = (Spinner) findViewById(R.id.difficulty_spinner);
          pilotBar = findViewById(R.id.pilot_bar);
 
-         pilotSkillTextView = findViewById(R.id.pilotSkillTextView);
+
+        pilotSkillTextView = findViewById(R.id.pilotSkillTextView);
          fighterSkillTextView = findViewById(R.id.fighterSkillTextView);
          traderSkillTextView = findViewById(R.id.traderSkillTestView);
          engineerSkillTextView = findViewById(R.id.engineerSkillTextView);
@@ -142,6 +144,7 @@ public class ConfigurationActivity extends AppCompatActivity{
 
                 Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
                 startActivity(intent);
+
 
                 // Code here executes on main thread after user presses button
             }

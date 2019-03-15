@@ -10,12 +10,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.TradeGood;
 import com.example.codemonkeys.view.TransactionAdapter;
 import com.example.codemonkeys.viewmodel.MarketViewModel;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class MarketActivity extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class MarketActivity extends AppCompatActivity {
     private Intent intent;
     private final int BUY = 1;
     private final int SELL = 0;
+    private TextView itemMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,9 @@ public class MarketActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_activity);
         intent = getIntent();
+
+        itemMessage = findViewById(R.id.itemMessage);
+        itemMessage.setVisibility(View.INVISIBLE);
 
         //check if a course was passed in, correct behavior is that a course always is passed
 
@@ -53,6 +62,8 @@ public class MarketActivity extends AppCompatActivity {
            Setup our recycler view by grabbing widget reference, setting layout and then setting
            the adapter.
          */
+
+
         RecyclerView recyclerView = findViewById(R.id.sell_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -60,19 +71,43 @@ public class MarketActivity extends AppCompatActivity {
         adapter = new TransactionAdapter();
         recyclerView.setAdapter(adapter);
 
+
         //grab our view model
         viewModel = ViewModelProviders.of(this).get(MarketViewModel.class);
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
+            List<TradeGood> listOfTradeGoods = viewModel.getBuyTradeGoods();
+            if (listOfTradeGoods.size() == 0) {
+                itemMessage.setVisibility(View.VISIBLE);
+
+            }
             adapter.setTradeGoodsList(viewModel.getBuyTradeGoods());
+
+
         } else if (getIntent().getIntExtra("TRANSACTION", SELL) == SELL) {
+            List<TradeGood> listOfSellGoods = viewModel.getSellTradeGoods();
+            if (listOfSellGoods.size() == 0) {
+                itemMessage.setText("No items to sell");
+                itemMessage.setVisibility(View.VISIBLE);
+
+            }
+
             adapter.setTradeGoodsList(viewModel.getSellTradeGoods());
         } else {
+            List<TradeGood> allGoods = viewModel.getAllHoldGoods();
+            if (allGoods.size() == 0) {
+                itemMessage.setVisibility(View.VISIBLE);
+
+            }
             adapter.setTradeGoodsList(viewModel.getAllHoldGoods());
+
         }
 
         adapter.setOnStudentClickListener(new TransactionAdapter.OnItemClickListener() {
@@ -81,6 +116,7 @@ public class MarketActivity extends AppCompatActivity {
                 Intent intent = new Intent(MarketActivity.this, BuyExtraActivity.class);
                 intent.putExtra("TRANSACTION", getIntent().getIntExtra("TRANSACTION", BUY));
                 intent.putExtra("ITEM", item);
+
 //                intent.putExtra("ITEM_PRICE", item);
 //                intent.putExtra("ITEM_PRICE"
 
