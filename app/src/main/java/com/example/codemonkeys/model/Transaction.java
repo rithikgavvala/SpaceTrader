@@ -22,6 +22,9 @@ public class Transaction {
         if(t.getMTLU() >  p.getSystem().getTechLevel().getRank()) {
             //create Toast, can't sell
         }
+        if(quantity > p.getSpaceship().getSizeCargoList()){
+            //create Toast, can't sell
+        }
         LinkedList<TradeGood> newList = p.getSpaceship().getCargoList();
         for(int i = 0; i < quantity; i++){
             newList.remove(t);
