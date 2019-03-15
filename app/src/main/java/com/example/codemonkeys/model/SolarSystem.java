@@ -16,7 +16,7 @@ public class SolarSystem {
         this.techLevel = tl;
         this.resources = pol;
         this.location = loc;
-        listofResources = findGoodsAvailabletoSell();
+        listofResources = findGoodsAvailabletoBuy();
     }
 
     public Location getLocation() {
@@ -47,7 +47,7 @@ public class SolarSystem {
         this.resources = resources;
     }
 
-    public List<TradeGood> findGoodsAvailabletoSell(){
+    public List<TradeGood> findGoodsAvailabletoBuy() {
         List<TradeGood> list = new ArrayList<TradeGood>();
         for(TradeGood t: TradeGood.values()){
             if(techLevel.getRank() >= t.getMTLP()){

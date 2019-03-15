@@ -25,6 +25,9 @@
         <activity
             android:name=".view.MarketActivity"
             android:parentActivityName=".view.MarketActivity" />
+        <activity
+            android:name=".view.BuyExtraActivity"
+            android:parentActivityName=".view.MarketActivity" />
 
 
         <meta-data

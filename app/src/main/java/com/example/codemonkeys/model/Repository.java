@@ -18,7 +18,7 @@ public class Repository {
     public List<TradeGood> getAllTradeGoods() { return allTradeGoods;}
 
     public List<TradeGood> getTradeGoodsForSolarSystem(SolarSystem s) {
-        return s.findGoodsAvailabletoSell();
+        return s.findGoodsAvailabletoBuy();
     }
 
     public Player getPlayer() {

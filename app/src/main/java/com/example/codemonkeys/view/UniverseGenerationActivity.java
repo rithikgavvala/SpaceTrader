@@ -40,6 +40,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private Button buyButton;
     private Button sellButton;
     private Button market;
+    private final int BUY = 1;
+    private final int SELL = 0;
 
 
     @Override
@@ -104,15 +106,20 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(UniverseGenerationActivity.this, MarketActivity.class));
+                Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
+                transactionIntent.putExtra("TRANSACTION", BUY);
+                startActivity(transactionIntent);
+
             }
         });
 
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(UniverseGenerationActivity.this, MarketActivity.class));
+                Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
+                transactionIntent.putExtra("TRANSACTION", SELL);
+                startActivity(transactionIntent);
             }
-        } );
+        });
     }
 
     @Override
@@ -126,7 +133,6 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
 
     }
-
 
 
     @Override

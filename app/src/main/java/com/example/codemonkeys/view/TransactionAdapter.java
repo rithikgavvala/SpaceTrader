@@ -25,7 +25,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     private List<TradeGood> buyItemsList = new ArrayList<>();
 
     /** a listener for a touch event on the student */
-    private OnStudentClickListener listener;
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -93,11 +93,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
     }
 
-    public interface OnStudentClickListener {
+    public interface OnItemClickListener {
         void onItemClicked(TradeGood item);
     }
 
-    public void setOnStudentClickListener(OnStudentClickListener listener) {
+    public void setOnStudentClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 }

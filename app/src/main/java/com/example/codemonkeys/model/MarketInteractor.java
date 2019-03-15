@@ -14,10 +14,17 @@ public class MarketInteractor {
         myRepository = repo;
     }
 
-    public List<TradeGood> getAllTradeGoods() {
+    public List<TradeGood> getBuyTradeGoods() {
         Player p = myRepository.getPlayer();
         SolarSystem s = p.getSystem();
-        return s.findGoodsAvailabletoSell();
+        return s.findGoodsAvailabletoBuy();
     }
+
+    public List<TradeGood> getSellTradeGoods() {
+        Player p = myRepository.getPlayer();
+        SolarSystem s = p.getSystem();
+        return s.findGoodsAvailabletoBuy();
+    }
+
 
 }

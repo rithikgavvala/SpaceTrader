@@ -20,7 +20,11 @@ public class MarketViewModel  extends AndroidViewModel {
         interactor = Model.getInstance().getMarketInteractor();
     }
 
-    public List<TradeGood> getTradeGoods() {
-        return interactor.getAllTradeGoods();
+    public List<TradeGood> getBuyTradeGoods() {
+        return interactor.getBuyTradeGoods();
+    }
+
+    public List<TradeGood> getSellTradeGoods() {
+        return interactor.getSellTradeGoods();
     }
 }
