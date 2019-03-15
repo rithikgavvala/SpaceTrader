@@ -7,10 +7,10 @@ public class Transaction {
 
     public void buy(Player p, TradeGood t, int quantity){
         if(p.getSpaceship().canBuy(quantity)){
-            // create Toast
+            // create Toast, can't buy
         }
         if(p.getMoney() > t.generatePrice(p.getSystem()) * quantity){
-            //create Toast
+            //create Toast, can't buy
         }
         for(int i = 1; i <= quantity; i++){
             p.getSpaceship().addToList(t);
@@ -19,6 +19,9 @@ public class Transaction {
     }
 
     private void sell(Player p, TradeGood t, int quantity){
+        if(t.getMTLU() >  p.getSystem().getTechLevel().getRank()) {
+            //create Toast, can't sell
+        }
         LinkedList<TradeGood> newList = p.getSpaceship().getCargoList();
         for(int i = 0; i < quantity; i++){
             newList.remove(t);
