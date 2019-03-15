@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import java.util.LinkedList;
+
 public class Transaction {
 
 
@@ -14,5 +16,14 @@ public class Transaction {
             p.getSpaceship().addToList(t);
             p.setMoney(p.getMoney() - t.generatePrice(p.getSystem()));
         }
+    }
+
+    private void sell(Player p, TradeGood t, int quantity){
+        LinkedList<TradeGood> newList = p.getSpaceship().getCargoList();
+        for(int i = 0; i < quantity; i++){
+            newList.remove(t);
+            p.setMoney(p.getMoney() + t.generatePrice(p.getSystem()));
+        }
+        p.getSpaceship().setCargoLoad(newList);
     }
 }

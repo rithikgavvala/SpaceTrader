@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
+import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
