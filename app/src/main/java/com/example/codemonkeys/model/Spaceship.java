@@ -1,6 +1,7 @@
 package com.example.codemonkeys.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public enum Spaceship {
     Flea(20, 10),
@@ -16,20 +17,21 @@ public enum Spaceship {
 
     private int parsecs;
     private int cargoMax;
-    private LinkedList<TradeGood> cargoList;
+    private List<TradeGood> cargoList;
     private int sizeCargoList;
 
     Spaceship(int parsecs, int cargoMax){
         this.parsecs = parsecs;
         this.cargoMax = cargoMax;
         sizeCargoList = 0;
+        cargoList = new LinkedList<>();
     }
 
-    public LinkedList<TradeGood> getCargoList(){
+    public List<TradeGood> getCargoList() {
         return cargoList;
     }
 
-    public void setCargoLoad(LinkedList<TradeGood> arr){
+    public void setCargoLoad(List<TradeGood> arr) {
         cargoList = arr;
     }
 

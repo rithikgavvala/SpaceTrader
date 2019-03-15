@@ -24,4 +24,8 @@ public class ConfigurationViewModel  extends AndroidViewModel {
     public void generatePlayerSolarSystem(SolarSystem s){
         interactor.sendSolarSystemObject(s);
     }
+
+    public Player getPlayer() {
+        return interactor.getPlayer();
+    }
 }

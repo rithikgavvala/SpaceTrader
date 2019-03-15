@@ -31,14 +31,16 @@ public class MarketActivity extends AppCompatActivity {
      * the adapter for translating List of student into display in recycler view
      */
     private TransactionAdapter adapter;
-    private Intent intent = getIntent();
+    private Intent intent;
     private final int BUY = 1;
     private final int SELL = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_activity);
+        intent = getIntent();
 
         //check if a course was passed in, correct behavior is that a course always is passed
 
@@ -65,7 +67,7 @@ public class MarketActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (intent.getIntExtra("TRANSACTION", BUY) == BUY) {
+        if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
             adapter.setTradeGoodsList(viewModel.getBuyTradeGoods());
         } else {
             adapter.setTradeGoodsList(viewModel.getSellTradeGoods());
@@ -73,8 +75,13 @@ public class MarketActivity extends AppCompatActivity {
 
         adapter.setOnStudentClickListener(new TransactionAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(TradeGood student) {
+            public void onItemClicked(TradeGood item) {
                 Intent intent = new Intent(MarketActivity.this, BuyExtraActivity.class);
+                intent.putExtra("TRANSACTION", getIntent().getIntExtra("TRANSACTION", BUY));
+                intent.putExtra("ITEM", item);
+//                intent.putExtra("ITEM_PRICE", item);
+//                intent.putExtra("ITEM_PRICE"
+
                 startActivityForResult(intent, 1);
             }
         });

@@ -67,8 +67,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         Universe u = Universe.getInstance();
         SolarSystem[] solarSystemsArray = u.getUniverse();
         List<Entry> location = new ArrayList<Entry>();
-        int x;
-        int y;
+        float x;
+        float y;
         for (int i = 0; i < solarSystemsArray.length; i++) {
             //Log.d("Solar System", solarSystemsArray[i].getSystemName());
             x = solarSystemsArray[i].getLocation().getX();
@@ -107,7 +107,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         sellButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
-                transactionIntent.putExtra("TRANSACTION", BUY);
+                transactionIntent.putExtra("TRANSACTION", SELL);
                 startActivity(transactionIntent);
 
             }
@@ -116,7 +116,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         buyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
-                transactionIntent.putExtra("TRANSACTION", SELL);
+                transactionIntent.putExtra("TRANSACTION", BUY);
                 startActivity(transactionIntent);
             }
         });

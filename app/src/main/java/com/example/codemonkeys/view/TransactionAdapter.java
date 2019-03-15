@@ -48,7 +48,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Log.d("APP", "Binding: " + position + " " + sellItemsList.get(position));
 
         holder.name.setText(item.toString());
-        holder.price.setText(item.getBasePrice() + "");
+        holder.price.setText(item.getCurrentPrice() + " credits");
 
 
     }

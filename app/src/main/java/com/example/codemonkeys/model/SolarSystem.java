@@ -51,6 +51,7 @@ public class SolarSystem {
         List<TradeGood> list = new ArrayList<TradeGood>();
         for(TradeGood t: TradeGood.values()){
             if(techLevel.getRank() >= t.getMTLP()){
+                t.generatePrice(this);
                 list.add(t);
             }
         }

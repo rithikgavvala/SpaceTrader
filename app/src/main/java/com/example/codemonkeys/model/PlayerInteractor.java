@@ -10,7 +10,8 @@ public class PlayerInteractor {
     public void updatePlayer(Player p) {
         myRepository.updateCurrentPlayer(p);
     }
-    public Player getPlayer(Player p) {
+
+    public Player getPlayer() {
         return myRepository.getPlayer();
     }
     public void sendSolarSystemObject(SolarSystem s){

@@ -25,6 +25,7 @@ public enum TradeGood {
     private boolean ER;
     private int MTL;
     private int MTH;
+    private double currentPrice;
 
     private TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.var = Var;}
 
@@ -47,8 +48,13 @@ public enum TradeGood {
     public int getMTLU(){
         return MTLU;
     }
-    public double generatePrice(SolarSystem s){
-        return basePrice + (IPL * (s.getTechLevel().getRank() - MTLP))  + getVariance();
+
+    public double getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void generatePrice(SolarSystem s) {
+        currentPrice = basePrice + (IPL * (s.getTechLevel().getRank() - MTLP)) + getVariance();
     }
 
     private double getVariance(){

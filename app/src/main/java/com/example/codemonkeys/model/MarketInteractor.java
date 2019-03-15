@@ -1,5 +1,6 @@
 package com.example.codemonkeys.model;
 
+
 import java.util.List;
 /**
  * Provide operations associated with Courses
@@ -22,8 +23,8 @@ public class MarketInteractor {
 
     public List<TradeGood> getSellTradeGoods() {
         Player p = myRepository.getPlayer();
-        SolarSystem s = p.getSystem();
-        return s.findGoodsAvailabletoBuy();
+        Spaceship s = p.getSpaceship();
+        return s.getCargoList();
     }
 
 
