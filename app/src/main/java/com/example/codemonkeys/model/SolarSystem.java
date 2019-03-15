@@ -16,7 +16,7 @@ public class SolarSystem {
         this.techLevel = tl;
         this.resources = pol;
         this.location = loc;
-        listofResources = findGoodsAvailabletoBuy();
+        this.listofResources = findGoodsAvailabletoBuy();
     }
 
     public Location getLocation() {
@@ -47,6 +47,9 @@ public class SolarSystem {
         this.resources = resources;
     }
 
+    public List<TradeGood> getListofResources() {
+        return listofResources;
+    }
     public List<TradeGood> findGoodsAvailabletoBuy() {
         List<TradeGood> list = new ArrayList<TradeGood>();
         for(TradeGood t: TradeGood.values()){

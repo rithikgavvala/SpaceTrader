@@ -1,8 +1,5 @@
 package com.example.codemonkeys.model;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Transaction {
 
 
@@ -15,28 +12,22 @@ public class Transaction {
             //create Toast, can't buy
             return -2;
         }
-        p.setMoney(p.getMoney() - t.getCurrentPrice());
-        for(int i = 1; i <= quantity; i++){
-            p.getSpaceship().addToList(t);
-        }
+        p.setMoney(p.getMoney() - (t.getCurrentPrice() * quantity));
+        p.getSpaceship().addToList(t, quantity);
         return 1;
     }
 
     public int sell(Player p, TradeGood t, int quantity) {
-        if ((t.getMTLU() > p.getSystem().getTechLevel().getRank())) { //TODO: Check this
+        if ((p.getSystem().getTechLevel().getRank() < t.getMTLU())) { //TODO: Check this
             //create Toast, can't sell
             return -1;
         }
-        if (!(quantity > p.getSpaceship().getSizeCargoList())) {
+        if ((quantity > p.getSpaceship().getQuantity())) {
             //create Toast, can't sell
             return -2;
         }
-        List<TradeGood> newList = p.getSpaceship().getCargoList();
-        for(int i = 0; i < quantity; i++){
-            newList.remove(t);
-            p.setMoney(p.getMoney() + t.getCurrentPrice());
-        }
-        p.getSpaceship().setCargoLoad(newList);
+        p.getSpaceship().remove(t, quantity);
+        p.setMoney(p.getMoney() + (t.getCurrentPrice() * quantity));
         return 1;
     }
 }

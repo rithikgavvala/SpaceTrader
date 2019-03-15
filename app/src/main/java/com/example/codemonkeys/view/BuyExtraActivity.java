@@ -79,6 +79,7 @@ public class BuyExtraActivity extends AppCompatActivity {
                     if (result == 1) {
                         makeToast(v, "Buy Complete. You now have "
                                 + viewModel.getPlayer().getMoney() + " credits");
+                        finish();
                     } else if (result == -1) {
                         makeToast(v, "You do not have enough cargo bays!");
                     } else {
@@ -89,6 +90,7 @@ public class BuyExtraActivity extends AppCompatActivity {
                     if (result == 1) {
                         makeToast(v, "Sell Complete. You now have "
                                 + viewModel.getPlayer().getMoney() + " credits");
+                        finish();
                     } else if (result == -1) {
                         makeToast(v, "The Minimum Tech-Level of this item is greater " +
                                 "than the tech level of the system");

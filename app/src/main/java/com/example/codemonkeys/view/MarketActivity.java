@@ -69,8 +69,10 @@ public class MarketActivity extends AppCompatActivity {
         super.onResume();
         if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
             adapter.setTradeGoodsList(viewModel.getBuyTradeGoods());
-        } else {
+        } else if (getIntent().getIntExtra("TRANSACTION", SELL) == SELL) {
             adapter.setTradeGoodsList(viewModel.getSellTradeGoods());
+        } else {
+            adapter.setTradeGoodsList(viewModel.getAllHoldGoods());
         }
 
         adapter.setOnStudentClickListener(new TransactionAdapter.OnItemClickListener() {

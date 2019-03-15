@@ -9,16 +9,14 @@
     >
 
 
-
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/holdButton"
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:text="GALACTIC CHART"
+        android:text="HOLD GOODS"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -103,7 +101,7 @@
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/holdButton" />
 
     <TextView
         android:id="@+id/systemName"
@@ -116,7 +114,7 @@
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/holdButton" />
 
     <TextView
         android:id="@+id/textView11"
@@ -316,7 +314,7 @@
         android:background="@color/colorAccent"
         android:text="Buy"
         android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/holdButton"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <Button

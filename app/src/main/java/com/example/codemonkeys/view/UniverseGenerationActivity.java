@@ -33,6 +33,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView policeValue;
     private TextView piratesValue;
     private TextView distanceValue;
+    private TextView systemName;
     private ConfigurationViewModel viewModel;
 
     private Button leftArrow;
@@ -40,8 +41,11 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private Button buyButton;
     private Button sellButton;
     private Button market;
+    private Button holdButton;
     private final int BUY = 1;
     private final int SELL = 0;
+    private final int HOLD = 2;
+    private SolarSystem[] solarSystemsArray;
 
 
     @Override
@@ -59,30 +63,33 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         policeValue = (TextView) findViewById(R.id.policeValue);
         piratesValue = (TextView) findViewById(R.id.piratesValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
+        systemName = (TextView) findViewById(R.id.systemName);
         buyButton = findViewById(R.id.buyButton);
         sellButton = findViewById(R.id.sellButton);
-
+        holdButton = findViewById(R.id.holdButton);
         market = findViewById(R.id.button5);
 
         Universe u = Universe.getInstance();
-        SolarSystem[] solarSystemsArray = u.getUniverse();
+        solarSystemsArray = u.getUniverse();
         List<Entry> location = new ArrayList<Entry>();
         float x;
         float y;
-        for (int i = 0; i < solarSystemsArray.length; i++) {
-            //Log.d("Solar System", solarSystemsArray[i].getSystemName());
-            x = solarSystemsArray[i].getLocation().getX();
-            y = solarSystemsArray[i].getLocation().getY();
-            location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
-        }
+//        for (int i = 0; i < solarSystemsArray.length; i++) {
+//            //Log.d("Solar System", solarSystemsArray[i].getSystemName());
+//            x = solarSystemsArray[i].getLocation().getX();
+//            y = solarSystemsArray[i].getLocation().getY();
+//            location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
+//        }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
         dataSet.setScatterShapeSize(30);
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         //Assigning random solar system in universe to player
         viewModel.generatePlayerSolarSystem(solarSystemsArray[(int)(Math.random() * 15)]);
-
-
+        SolarSystem s = viewModel.getPlayer().getSystem();
+        systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
+        techLevelValue.setText(s.getTechLevel().toString());
+        resourceValue.setText(s.getResources().toString());
         ScatterData scatterData = new ScatterData(dataSet);
         chart.setData(scatterData);
         chart.setLogEnabled(true);
@@ -117,6 +124,13 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
                 transactionIntent.putExtra("TRANSACTION", BUY);
+                startActivity(transactionIntent);
+            }
+        });
+        holdButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
+                transactionIntent.putExtra("TRANSACTION", HOLD);
                 startActivity(transactionIntent);
             }
         });

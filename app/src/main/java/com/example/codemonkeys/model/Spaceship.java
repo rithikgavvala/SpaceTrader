@@ -1,5 +1,6 @@
 package com.example.codemonkeys.model;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,26 +18,38 @@ public enum Spaceship {
 
     private int parsecs;
     private int cargoMax;
-    private List<TradeGood> cargoList;
+    private Integer quantity;
+    private HashMap<TradeGood, Integer> cargoList;
     private int sizeCargoList;
 
     Spaceship(int parsecs, int cargoMax){
         this.parsecs = parsecs;
         this.cargoMax = cargoMax;
         sizeCargoList = 0;
-        cargoList = new LinkedList<>();
+        quantity = 0;
+        cargoList = new HashMap<TradeGood, Integer>();
     }
 
-    public List<TradeGood> getCargoList() {
+    public HashMap<TradeGood, Integer> getCargoList() {
         return cargoList;
     }
 
-    public void setCargoLoad(List<TradeGood> arr) {
-        cargoList = arr;
+    public void remove(TradeGood t, int quantity) {
+        int currQuantity = cargoList.get(t);
+        if (quantity >= currQuantity) {
+            cargoList.remove(t);
+        } else {
+            cargoList.put(t, currQuantity - quantity);
+        }
+        this.quantity -= quantity;
     }
 
-    public int getSizeCargoList(){
-        return sizeCargoList;
+    public void setCargoLoad(HashMap<TradeGood, Integer> map) {
+        cargoList = map;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public void setSizeCargoList(int size){
@@ -44,10 +57,12 @@ public enum Spaceship {
     }
 
     public boolean canBuy(int quantity){
+
         return sizeCargoList + quantity <= cargoMax;
     }
 
-    public void addToList(TradeGood t){
-       cargoList.add(t);
+    public void addToList(TradeGood t, int quantity) {
+        this.quantity += quantity;
+        cargoList.put(t, quantity);
     }
 }
