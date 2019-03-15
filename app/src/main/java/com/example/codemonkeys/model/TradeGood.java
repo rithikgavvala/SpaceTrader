@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import java.util.Random;
+
 public enum TradeGood {
     Water(0,0,2,30,3,4),
     Furs(0,0,0,250,10,10),
@@ -17,14 +19,14 @@ public enum TradeGood {
     private int MTLU;
     private int TTP;
     private int IPL;
-    private int Var;
+    private int var;
     private boolean IE;
     private boolean CR;
     private boolean ER;
     private int MTL;
     private int MTH;
 
-    private TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.Var = Var;}
+    private TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.var = Var;}
 
     public int getMTLP(){
         return MTLP;
@@ -32,6 +34,30 @@ public enum TradeGood {
 
     public double getBasePrice() {
         return basePrice;
+    }
+
+    public int getIPL(){
+        return IPL;
+    }
+
+    public int getTTP(){
+        return TTP;
+    }
+
+    public int getMTLU(){
+        return MTLU;
+    }
+    public double generatePrice(SolarSystem s){
+        return basePrice + (IPL * (s.getTechLevel().getRank() - MTLP))  + getVariance();
+    }
+
+    private double getVariance(){
+        double number = basePrice * (((double)(new Random().nextInt(var))/100));
+        int random = new Random().nextInt(2);
+        if(random == 0){
+            return -1 * number;
+        }
+        return number;
     }
 
 }
