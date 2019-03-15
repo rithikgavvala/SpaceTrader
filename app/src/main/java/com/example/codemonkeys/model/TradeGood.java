@@ -60,4 +60,6 @@ public enum TradeGood {
         return number;
     }
 
+
+
 }
