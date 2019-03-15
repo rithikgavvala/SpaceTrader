@@ -3,6 +3,7 @@ package com.example.codemonkeys.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
+import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
@@ -32,6 +34,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView policeValue;
     private TextView piratesValue;
     private TextView distanceValue;
+    private TextView systemName;
     private ConfigurationViewModel viewModel;
     private Button market;
 
@@ -51,6 +54,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         policeValue = (TextView) findViewById(R.id.policeValue);
         piratesValue = (TextView) findViewById(R.id.piratesValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
+        systemName = (TextView) findViewById(R.id.systemName);
         market = findViewById(R.id.button5);
 
         Universe u = Universe.getInstance();
@@ -60,6 +64,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         int y;
         for (int i = 0; i < solarSystemsArray.length; i++) {
             //Log.d("Solar System", solarSystemsArray[i].getSystemName());
+            Log.i("universe", "" + solarSystemsArray[i].getTechLevel());
             x = solarSystemsArray[i].getLocation().getX();
             y = solarSystemsArray[i].getLocation().getY();
             location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
@@ -91,7 +96,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         chart.setPinchZoom(true);
 
 
-        chart.invalidate();
+//        chart.invalidate();
 
         market.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -102,6 +107,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
+        Log.i("universe", "hello GOT IT");
         SolarSystem solarSystem = (SolarSystem) e.getData();
         //sizeValue.setText(solarSystem.getSize());
         techLevelValue.setText(solarSystem.getTechLevel().toString());
@@ -111,12 +117,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
 
     }
-
-
-
     @Override
     public void onNothingSelected() {
 
     }
-
 }

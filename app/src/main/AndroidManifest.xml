@@ -30,7 +30,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        tools:replace="android:appComponentFactory"
+
     </application>
+
 
 </manifest>

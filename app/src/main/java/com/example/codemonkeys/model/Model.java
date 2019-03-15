@@ -19,6 +19,7 @@ public class Model {
 
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
+        interactorMap.put("Market", new MarketInteractor(myRepository));
     }
 
     public PlayerInteractor getPlayerInteractor() {

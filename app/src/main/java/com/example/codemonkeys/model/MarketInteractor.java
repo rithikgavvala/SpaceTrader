@@ -15,7 +15,9 @@ public class MarketInteractor {
     }
 
     public List<TradeGood> getAllTradeGoods() {
-        return myRepository.getAllTradeGoods();
+        Player p = myRepository.getPlayer();
+        SolarSystem s = p.getSystem();
+        return s.findGoodsAvailabletoSell();
     }
 
 }
