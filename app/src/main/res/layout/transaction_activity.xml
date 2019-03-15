@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MarketActivity">
+    tools:context=".view.MarketActivity"
+    android:background="@color/colorPrimary">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sell_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/sell_item" />
+        tools:listitem="@layout/item_card" />
 
 </android.support.design.widget.CoordinatorLayout>

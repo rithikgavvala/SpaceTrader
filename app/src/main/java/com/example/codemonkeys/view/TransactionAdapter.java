@@ -33,7 +33,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         // hook up to the view for a single student in the system
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.sell_item, parent, false);
+                .inflate(R.layout.item_card, parent, false);
 
         return new ItemViewHolder(itemView);
     }
