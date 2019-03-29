@@ -20,6 +20,7 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
         interactorMap.put("Market", new MarketInteractor(myRepository));
+        interactorMap.put("Solar System", new PlayerInteractor(myRepository));
     }
 
     public PlayerInteractor getPlayerInteractor() {
@@ -28,6 +29,10 @@ public class Model {
 
     public MarketInteractor getMarketInteractor() {
         return (MarketInteractor) interactorMap.get("Market");
+    }
+
+    public PlayerInteractor getTravelInteractor() {
+        return (PlayerInteractor) interactorMap.get("Solar System");
     }
 
 }

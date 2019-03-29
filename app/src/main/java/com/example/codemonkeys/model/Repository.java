@@ -8,6 +8,7 @@ import java.util.List;
 public class Repository {
     private Player currentPlayer;
     private List<TradeGood> allTradeGoods;
+    private List<SolarSystem> solarSystems;
 
     public Repository() {
 
@@ -16,6 +17,10 @@ public class Repository {
     }
 
     public List<TradeGood> getAllTradeGoods() { return allTradeGoods;}
+
+    public List<SolarSystem> getSolarSystems() { return solarSystems;}
+
+
 
     public List<TradeGood> getTradeGoodsForSolarSystem(SolarSystem s) {
         return s.findGoodsAvailabletoBuy();
@@ -31,4 +36,9 @@ public class Repository {
         Log.d("Repository", "Created Player in Repository: "
                 + currentPlayer);
     }
+
+    public void updateCurrentSolarSystem(SolarSystem s) {
+
+    }
+
 }

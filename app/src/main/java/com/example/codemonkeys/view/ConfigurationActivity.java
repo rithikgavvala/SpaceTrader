@@ -135,6 +135,8 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.show();
                     Universe universe = Universe.getInstance();
                     universe.generateUniverse();
+                    viewModel.generatePlayerSolarSystem(universe.getUniverse().get((int)(Math.random() * 15)));
+
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),
                             "Skill points must add to 16", Toast.LENGTH_SHORT);

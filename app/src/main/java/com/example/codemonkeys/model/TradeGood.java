@@ -27,7 +27,7 @@ public enum TradeGood {
     private int MTH;
     private double currentPrice;
 
-    private TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.var = Var;}
+    TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) { this.MTLP = MTLP; this.MTLU = MTLU; this.TTP = TTP; this.basePrice = basePrice; this.IPL = IPL; this.var = Var;}
 
     public int getMTLP(){
         return MTLP;

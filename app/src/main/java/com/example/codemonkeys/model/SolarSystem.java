@@ -1,9 +1,10 @@
 package com.example.codemonkeys.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolarSystem {
+public class SolarSystem implements Serializable {
     private String systemName;
     private Location location;
     private TechLevel techLevel;
@@ -42,6 +43,7 @@ public class SolarSystem {
     public Resources getResources() {
         return resources;
     }
+
 
     public void setResources(Resources resources) {
         this.resources = resources;

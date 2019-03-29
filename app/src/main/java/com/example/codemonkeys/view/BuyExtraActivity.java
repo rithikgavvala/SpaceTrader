@@ -15,7 +15,7 @@ import com.example.codemonkeys.model.TradeGood;
 import com.example.codemonkeys.model.Transaction;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
-public class BuyExtraActivity extends AppCompatActivity {
+public class    BuyExtraActivity extends AppCompatActivity {
     private final int BUY = 1;
     private final int SELL = 0;
     private int transactionType = 1;

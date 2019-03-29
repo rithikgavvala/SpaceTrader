@@ -11,6 +11,7 @@ import com.example.codemonkeys.model.PlayerInteractor;
 import com.example.codemonkeys.model.SolarSystem;
 
 public class ConfigurationViewModel  extends AndroidViewModel {
+
     private PlayerInteractor interactor;
     public ConfigurationViewModel(@NonNull Application application) {
         super(application);

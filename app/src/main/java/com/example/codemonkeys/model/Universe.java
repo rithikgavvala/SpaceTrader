@@ -2,6 +2,7 @@ package com.example.codemonkeys.model;
 
 import android.util.Log;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -223,7 +224,8 @@ public class Universe {
         }
     }
 
-    public SolarSystem[] getUniverse() {
-        return solarSystems;
+    public List<SolarSystem> getUniverse() {
+        List<SolarSystem> systems = Arrays.asList(solarSystems);
+        return systems;
     }
 }

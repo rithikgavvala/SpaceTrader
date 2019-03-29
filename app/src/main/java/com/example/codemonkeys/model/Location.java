@@ -1,6 +1,8 @@
 package com.example.codemonkeys.model;
 
-public class Location implements Comparable {
+import java.io.Serializable;
+
+public class Location implements Comparable, Serializable {
     private int x;
     private int y;
 

@@ -3,9 +3,42 @@ package com.example.codemonkeys.model;
 import android.util.Log;
 import android.widget.Space;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    public void setSystem(SolarSystem system) {
+        this.system = system;
+    }
+
+    public int getPilotSkill() {
+        return pilotSkill;
+    }
+
+    public void setPilotSkill(int pilotSkill) {
+        this.pilotSkill = pilotSkill;
+    }
+
+    public int getFighterSkill() {
+        return fighterSkill;
+    }
+
+    public void setFighterSkill(int fighterSkill) {
+        this.fighterSkill = fighterSkill;
+    }
+
+    public int getTraderSkill() {
+        return traderSkill;
+    }
+
+    public void setTraderSkill(int traderSkill) {
+        this.traderSkill = traderSkill;
+    }
+
+    public int getEngineerSkill() {
+        return engineerSkill;
+    }
+
     private String characterName;
     private int pilotSkill;
     private int fighterSkill;
@@ -14,6 +47,35 @@ public class Player {
     private String difficulty;
     private int credits;
     private Spaceship ship;
+
+    public void setEngineerSkill(int engineerSkill) {
+        this.engineerSkill = engineerSkill;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public Spaceship getShip() {
+        return ship;
+    }
+
+    public void setShip(Spaceship ship) {
+        this.ship = ship;
+    }
+
     private SolarSystem system;
     private double money;
 
@@ -62,5 +124,31 @@ public class Player {
                 + ", fighter skill of " + fighterSkill
                 + ", trader skill of " + traderSkill
                 + ", and engineer skill of " + engineerSkill;
+    }
+
+    public List<SolarSystem> getTravelList(){
+        List<SolarSystem> travelList = new ArrayList<>();
+        Universe u = Universe.getInstance();
+        List<SolarSystem> currPlanets = new ArrayList<>();
+        currPlanets = u.getUniverse();
+
+        for(int i = 0; i < currPlanets.size(); i++){
+            if(calcDistance(currPlanets.get(i), system) < 5 * ship.getParsecs()){
+                travelList.add(currPlanets.get(i));
+            }
+        }
+        return travelList;
+    }
+
+    private int calcDistance(SolarSystem sys1, SolarSystem sys2){
+        int difX = sys1.getLocation().getX() - sys2.getLocation().getX();
+        int difY = sys1.getLocation().getY() - sys2.getLocation().getY();
+
+        double xSquare = Math.pow(difX, 2);
+        double ySquare = Math.pow(difY, 2);
+
+        double distance = Math.pow(xSquare + ySquare, 0.5);
+        return Math.abs((int) distance);
+
     }
 }

@@ -28,6 +28,9 @@
         <activity
             android:name=".view.BuyExtraActivity"
             android:parentActivityName=".view.MarketActivity" />
+        <activity
+            android:name=".view.TravelActivity"
+            android:parentActivityName=".view.UniverseGenerationActivity" />
 
 
         <meta-data

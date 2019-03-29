@@ -3,13 +3,16 @@ package com.example.codemonkeys.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
@@ -42,10 +45,12 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private Button sellButton;
     private Button market;
     private Button holdButton;
+    private Button travelButton;
+
     private final int BUY = 1;
     private final int SELL = 0;
     private final int HOLD = 2;
-    private SolarSystem[] solarSystemsArray;
+    private List<SolarSystem> solarSystemsArray;
 
 
     @Override
@@ -68,24 +73,26 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         sellButton = findViewById(R.id.sellButton);
         holdButton = findViewById(R.id.holdButton);
         market = findViewById(R.id.button5);
+        travelButton = findViewById(R.id.travelButton);
+
 
         Universe u = Universe.getInstance();
+
         solarSystemsArray = u.getUniverse();
         List<Entry> location = new ArrayList<Entry>();
         float x;
         float y;
-//        for (int i = 0; i < solarSystemsArray.length; i++) {
+//        for (int i = 0; i < solarSystemsArray.size(); i++) {
 //            //Log.d("Solar System", solarSystemsArray[i].getSystemName());
-//            x = solarSystemsArray[i].getLocation().getX();
-//            y = solarSystemsArray[i].getLocation().getY();
-//            location.add(new Entry(x,y, solarSystemsArray[i])); //can also add images to each entry
+//            x = solarSystemsArray.get(i).getLocation().getX();
+//            y = solarSystemsArray.get(i).getLocation().getY();
+//            location.add(new Entry(x,y, solarSystemsArray.get(i))); //can also add images to each entry
 //        }
         ScatterDataSet dataSet = new ScatterDataSet(location, "test");
         dataSet.setScatterShapeSize(30);
         dataSet.setScatterShape(ScatterChart.ScatterShape.CIRCLE);
 
         //Assigning random solar system in universe to player
-        viewModel.generatePlayerSolarSystem(solarSystemsArray[(int)(Math.random() * 15)]);
         SolarSystem s = viewModel.getPlayer().getSystem();
         systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
         techLevelValue.setText(s.getTechLevel().toString());
@@ -94,12 +101,17 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         chart.setData(scatterData);
         chart.setLogEnabled(true);
 
+
+
         chart.getDescription().setEnabled(false);
         chart.setOnChartValueSelectedListener(this);
 
         chart.setDrawGridBackground(false);
+        chart.setDragEnabled(true);
         chart.setTouchEnabled(true);
         chart.setMaxHighlightDistance(50f);
+        chart.setHighlightPerTapEnabled(true);
+
 
         // enable scaling and dragging
         chart.setDragEnabled(true);
@@ -134,6 +146,30 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
                 startActivity(transactionIntent);
             }
         });
+
+        travelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent travelIntent = new Intent(UniverseGenerationActivity.this, TravelActivity.class);
+
+                startActivity(travelIntent);
+            }
+        });
+        SolarSystem pickPlanet = (SolarSystem) getIntent().getSerializableExtra("PLANET");
+
+        if(pickPlanet != null){
+            Player p = viewModel.getPlayer();
+            p.setSystem(pickPlanet);
+            systemName.setText(pickPlanet.getSystemName());
+            resourceValue.setText(pickPlanet.getResources().toString());
+            distanceValue.setText(pickPlanet.getLocation().toString());
+            Toast toast = Toast.makeText(getApplicationContext(), "Planet Traveled:" + pickPlanet.getSystemName(), Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
+            toast.show();
+
+        }
+
+
+
     }
 
     @Override
