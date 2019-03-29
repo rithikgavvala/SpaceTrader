@@ -28,9 +28,10 @@ public class MarketInteractor {
         Player p = myRepository.getPlayer();
         Spaceship s = p.getSpaceship();
         LinkedList<TradeGood> r = new LinkedList<>(s.getCargoList().keySet());
+        SolarSystem system = p.getSystem();
         LinkedList<TradeGood> i = new LinkedList<TradeGood>();
-        for (TradeGood t : r) {
-            if (t.getMTLU() <= p.getSystem().getTechLevel().getRank()) {
+        for (TradeGood t : system.findGoodsAvailabletoBuy()) {
+            if (t.getMTLU() <= p.getSystem().getTechLevel().getRank() && r.contains(t)) {
                 i.add(t);
             }
         }

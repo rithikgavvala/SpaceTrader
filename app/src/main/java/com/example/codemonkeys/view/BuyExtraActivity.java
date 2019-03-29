@@ -61,7 +61,7 @@ public class    BuyExtraActivity extends AppCompatActivity {
             }
         };
         amountBar.setOnSeekBarChangeListener(mlistener);
-        itemTitle.setText(item.toString());
+        itemTitle.setText(item.getName());
         t = new Transaction();
         if (transactionType == BUY) {
             transactionButton.setText("Buy");
