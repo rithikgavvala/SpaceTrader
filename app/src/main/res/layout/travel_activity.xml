@@ -15,7 +15,7 @@
         tools:listitem="@layout/travel_item" />
 
     <TextView
-        android:id="@+id/itemMessage"
+        android:id="@+id/travelMessage"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:fontFamily="@font/roboto"
