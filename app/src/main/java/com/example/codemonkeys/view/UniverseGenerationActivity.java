@@ -157,8 +157,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         SolarSystem pickPlanet = (SolarSystem) getIntent().getSerializableExtra("PLANET");
 
         if(pickPlanet != null){
-            Player p = viewModel.getPlayer();
-            p.setSystem(pickPlanet);
+            viewModel.getPlayer().setSystem(pickPlanet);
             systemName.setText(pickPlanet.getSystemName());
             resourceValue.setText(pickPlanet.getResources().toString());
             distanceValue.setText(pickPlanet.getLocation().toString());

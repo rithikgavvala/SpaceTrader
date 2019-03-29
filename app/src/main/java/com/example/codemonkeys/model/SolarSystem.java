@@ -56,7 +56,7 @@ public class SolarSystem implements Serializable {
         List<TradeGood> list = new ArrayList<TradeGood>();
         for(TradeGood t: TradeGood.values()){
             if(techLevel.getRank() >= t.getMTLP()){
-                t.generatePrice(this);
+                t.generatePrice(this.techLevel.getRank());
                 list.add(t);
             }
         }
