@@ -146,7 +146,8 @@ public class Player {
         currPlanets = u.getUniverse();
 
         for(int i = 0; i < currPlanets.size(); i++){
-            if(calcDistance(currPlanets.get(i), system) < 5 * ship.getParsecs()){
+            if(calcDistance(currPlanets.get(i), system)  < 5 * ship.getParsecs()
+                    && fuelLevel  > calcDistance(currPlanets.get(i), system) / 6){
                 travelList.add(currPlanets.get(i));
             }
         }

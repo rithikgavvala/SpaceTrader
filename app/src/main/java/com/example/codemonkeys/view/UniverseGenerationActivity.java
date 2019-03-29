@@ -33,7 +33,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView techLevelValue;
     private TextView governmentValue;
     private TextView resourceValue;
-    private TextView policeValue;
+    private TextView creditsValue;
     private TextView piratesValue;
     private TextView distanceValue;
     private TextView systemName;
@@ -66,7 +66,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         techLevelValue = (TextView) findViewById(R.id.techLevelValue);
         governmentValue = (TextView) findViewById(R.id.governmentValue);
         resourceValue = (TextView) findViewById(R.id.resourceValue);
-        policeValue = (TextView) findViewById(R.id.policeValue);
+        creditsValue = (TextView) findViewById(R.id.creditsValue);
         fuelValue = (TextView) findViewById(R.id.fuelValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
         systemName = (TextView) findViewById(R.id.systemName);
@@ -100,6 +100,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         Player player = viewModel.getPlayer();
         String fuelLevel = "" + player.getFuelLevel();
         fuelValue.setText(fuelLevel);
+        String playerCredits = "" + player.getCredits();
+        creditsValue.setText(playerCredits);
         systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
         techLevelValue.setText(s.getTechLevel().toString());
         resourceValue.setText(s.getResources().toString());

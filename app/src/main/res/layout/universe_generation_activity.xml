@@ -179,7 +179,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Police:"
+        android:text="Credits: "
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
@@ -267,7 +267,7 @@
         app:layout_constraintTop_toBottomOf="@+id/governmentValue" />
 
     <TextView
-        android:id="@+id/policeValue"
+        android:id="@+id/creditsValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -290,7 +290,7 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/policeValue" />
+        app:layout_constraintTop_toBottomOf="@+id/creditsValue" />
 
     <TextView
         android:id="@+id/distanceValue"
