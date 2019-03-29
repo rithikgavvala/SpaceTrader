@@ -168,12 +168,12 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             systemName.setText(pickPlanet.getSystemName());
             resourceValue.setText(pickPlanet.getResources().toString());
             distanceValue.setText(pickPlanet.getLocation().toString());
-            String fuel = ""  + p.getFuelLevel();
-            if(p.getFuelLevel() < 0){
+            String fuel = "" + p.getFuelLevel();
+            if (p.getFuelLevel() < 0) {
                 String zero = "" + 0;
                 fuelValue.setText(zero);
 
-            }else{
+            } else {
                 fuelValue.setText(fuel);
             }
 
@@ -183,7 +183,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             toast.show();
 
         }
-        if(p.getFuelLevel() < 0){
+        if (p.getFuelLevel() < 0) {
             String anotherZero = "0";
             fuelValue.setText(anotherZero);
         }

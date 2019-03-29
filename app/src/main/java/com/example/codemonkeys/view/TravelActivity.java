@@ -53,11 +53,11 @@ public class TravelActivity extends AppCompatActivity {
                 int parsecs = distance / 7;
                 p.setFuelLevel(p.getFuelLevel() - parsecs);
 
-                if(p.getFuelLevel() < parsecs && p.getFuelLevel() < 0){
+                if (p.getFuelLevel() < parsecs && p.getFuelLevel() < 0) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Can't travel not enough fuel", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
-                }else{
+                } else {
                     Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
                     intent.putExtra("PLANET", solarSys);
                     Log.d("PLANET TRAVELED", solarSys.getSystemName());
