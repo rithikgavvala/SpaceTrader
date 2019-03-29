@@ -193,7 +193,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Pirates:"
+        android:text="Fuel: "
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
@@ -280,7 +280,7 @@
         app:layout_constraintTop_toBottomOf="@+id/resourceValue" />
 
     <TextView
-        android:id="@+id/piratesValue"
+        android:id="@+id/fuelValue"
         android:layout_width="145dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -303,7 +303,7 @@
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView18"
-        app:layout_constraintTop_toBottomOf="@+id/piratesValue" />
+        app:layout_constraintTop_toBottomOf="@+id/fuelValue" />
 
     <Button
         android:id="@+id/buyButton"

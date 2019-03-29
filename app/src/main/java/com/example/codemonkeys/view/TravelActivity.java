@@ -9,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Location;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
@@ -42,14 +45,28 @@ public class TravelActivity extends AppCompatActivity {
         travelAdapter.setSolarSystemList(viewModel.getPlayer().getTravelList());
         travelAdapter.setOnSolarSystemClickListener(new TravelAdapter.OnSolarSystemClickListener() {
             @Override
-            public void onSolarSystemClicked(SolarSystem SolarSystem) {
+            public void onSolarSystemClicked(SolarSystem solarSys) {
                 Player p = viewModel.getPlayer();
+                SolarSystem s = solarSys;
+
+                int distance = p.calcDistance(p.getSystem(), s);
+                int parsecs = distance / 7;
+                p.setFuelLevel(p.getFuelLevel() - parsecs);
+
+                if(p.getFuelLevel() < parsecs && p.getFuelLevel() < 0){
+                    Toast toast = Toast.makeText(getApplicationContext(), "Can't travel not enough fuel", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
+                    toast.show();
+                }else{
+                    Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
+                    intent.putExtra("PLANET", solarSys);
+                    Log.d("PLANET TRAVELED", solarSys.getSystemName());
+                    startActivityForResult(intent, 1);
+                }
 
 
-                Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
-                intent.putExtra("PLANET", SolarSystem);
-                Log.d("PLANET TRAVELED", SolarSystem.getSystemName());
-                startActivityForResult(intent, 1);
+
+
 
 
 

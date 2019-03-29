@@ -48,6 +48,27 @@ public class Player {
     private int credits;
     private Spaceship ship;
 
+    private int fuelLevel;
+
+    public Player(String name, int pil, int fight, int trad, int engine, String diff) {
+        characterName = name;
+        pilotSkill = pil;
+        fighterSkill = fight;
+        traderSkill = trad;
+        engineerSkill = engine;
+        difficulty = diff;
+        credits = 1000;
+        this.ship = Spaceship.Gnat;
+        money = 1000;
+        fuelLevel = ship.getParsecs();
+    }
+
+    public int getFuelLevel() {
+        return fuelLevel;
+    }
+
+
+
     public void setEngineerSkill(int engineerSkill) {
         this.engineerSkill = engineerSkill;
     }
@@ -79,16 +100,8 @@ public class Player {
     private SolarSystem system;
     private double money;
 
-    public Player(String name, int pil, int fight, int trad, int engine, String diff) {
-        characterName = name;
-        pilotSkill = pil;
-        fighterSkill = fight;
-        traderSkill = trad;
-        engineerSkill = engine;
-        difficulty = diff;
-        credits = 1000;
-        this.ship = Spaceship.Gnat;
-        money = 1000;
+    public void setFuelLevel(int fuelLevel) {
+        this.fuelLevel = fuelLevel;
     }
     public void updateSolarSystem(SolarSystem s){
         Log.d("Solar System Player",s.getSystemName());
@@ -140,7 +153,7 @@ public class Player {
         return travelList;
     }
 
-    private int calcDistance(SolarSystem sys1, SolarSystem sys2){
+    public int calcDistance(SolarSystem sys1, SolarSystem sys2){
         int difX = sys1.getLocation().getX() - sys2.getLocation().getX();
         int difY = sys1.getLocation().getY() - sys2.getLocation().getY();
 
