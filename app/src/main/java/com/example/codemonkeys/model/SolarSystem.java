@@ -1,5 +1,7 @@
 package com.example.codemonkeys.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +56,12 @@ public class SolarSystem implements Serializable {
     }
     public List<TradeGood> findGoodsAvailabletoBuy() {
         List<TradeGood> list = new ArrayList<TradeGood>();
-        for(TradeGood t: TradeGood.values()){
+        for (TradeGoodEnum t : TradeGoodEnum.values()) {
             if(techLevel.getRank() >= t.getMTLP()){
-                t.generatePrice(this);
-                list.add(t);
+                TradeGood nt = new TradeGood(t);
+                nt.generatePrice(this);
+                Log.i("SYSTEM INFO", "Rank: " + this.techLevel.getRank());
+                list.add(nt);
             }
         }
         return list;

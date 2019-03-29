@@ -154,7 +154,7 @@ public class Player {
         return travelList;
     }
 
-    public int calcDistance(SolarSystem sys1, SolarSystem sys2){
+    public int calcDistance(SolarSystem sys1, SolarSystem sys2) {
         int difX = sys1.getLocation().getX() - sys2.getLocation().getX();
         int difY = sys1.getLocation().getY() - sys2.getLocation().getY();
 

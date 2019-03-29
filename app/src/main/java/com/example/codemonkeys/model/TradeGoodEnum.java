@@ -2,11 +2,20 @@ package com.example.codemonkeys.model;
 
 import android.util.Log;
 
-import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Random;
 
-public class TradeGood implements Serializable {
+public enum TradeGoodEnum {
+    Water(0, 0, 2, 30, 3, 4),
+    Furs(0, 0, 0, 250, 10, 10),
+    Food(1, 0, 1, 100, 5, 5),
+    Ore(2, 2, 3, 350, 20, 10),
+    Games(3, 1, 6, 250, -10, 5),
+    Firearms(3, 1, 5, 1250, -75, 100),
+    Medicine(4, 1, 6, 650, -20, 10),
+    Machines(4, 3, 5, 900, -30, 5),
+    Narcotics(5, 0, 5, 3500, -125, 150),
+    Robots(6, 4, 7, 5000, -150, 100);
 
     private double basePrice;
     private int MTLP;
@@ -14,7 +23,6 @@ public class TradeGood implements Serializable {
     private int TTP;
     private int IPL;
     private int var;
-    private String name;
     private boolean IE;
     private boolean CR;
     private boolean ER;
@@ -22,7 +30,7 @@ public class TradeGood implements Serializable {
     private int MTH;
     private double currentPrice;
 
-    TradeGood(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) {
+    TradeGoodEnum(int MTLP, int MTLU, int TTP, double basePrice, int IPL, int Var) {
         this.MTLP = MTLP;
         this.MTLU = MTLU;
         this.TTP = TTP;
@@ -31,17 +39,7 @@ public class TradeGood implements Serializable {
         this.var = Var;
     }
 
-    TradeGood(TradeGoodEnum te) {
-        this.MTLP = te.getMTLP();
-        this.MTLU = te.getMTLU();
-        this.TTP = te.getTTP();
-        this.basePrice = te.getBasePrice();
-        this.IPL = te.getIPL();
-        this.var = te.getVar();
-        this.name = te.name();
-    }
-
-    public int getMTLP(){
+    public int getMTLP() {
         return MTLP;
     }
 
@@ -49,15 +47,15 @@ public class TradeGood implements Serializable {
         return basePrice;
     }
 
-    public int getIPL(){
+    public int getIPL() {
         return IPL;
     }
 
-    public int getTTP(){
+    public int getTTP() {
         return TTP;
     }
 
-    public int getMTLU(){
+    public int getMTLU() {
         return MTLU;
     }
 
@@ -67,21 +65,21 @@ public class TradeGood implements Serializable {
 
     public void generatePrice(SolarSystem s) {
         currentPrice = basePrice + (IPL * (s.getTechLevel().getRank() - MTLP)) + getVariance();
-//        Log.i("SYSTEM INFO","System Name: " + s.getSystemName() + " " + currentPrice + " " + this.name());
+        Log.i("SYSTEM INFO", "System Name: " + s.getSystemName() + " " + currentPrice + " " + this.name());
 
     }
 
-    private double getVariance(){
-        double number = basePrice * (((double)(new Random().nextInt(var))/100));
+    private double getVariance() {
+        double number = basePrice * (((double) (new Random().nextInt(var)) / 100));
         int random = new Random().nextInt(2);
-        if(random == 0){
+        if (random == 0) {
             return -1 * number;
         }
         return number;
     }
 
 
-    public String getName() {
-        return name;
+    public int getVar() {
+        return var;
     }
 }
