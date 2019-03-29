@@ -43,10 +43,15 @@ public class TravelActivity extends AppCompatActivity {
         travelAdapter.setOnSolarSystemClickListener(new TravelAdapter.OnSolarSystemClickListener() {
             @Override
             public void onSolarSystemClicked(SolarSystem SolarSystem) {
+                Player p = viewModel.getPlayer();
+
+
                 Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
                 intent.putExtra("PLANET", SolarSystem);
                 Log.d("PLANET TRAVELED", SolarSystem.getSystemName());
                 startActivityForResult(intent, 1);
+
+
 
 
             }
