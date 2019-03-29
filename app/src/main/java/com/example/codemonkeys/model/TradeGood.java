@@ -84,4 +84,20 @@ public class TradeGood implements Serializable {
     public String getName() {
         return name;
     }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof TradeGood))
+            return false;
+        if (o == this)
+            return true;
+        return this.name.equals(((TradeGood) o).name);
+    }
+
+    public int hashCode() {
+        int hashCode = 0;
+        hashCode += (31 * (MTLP + MTLU + TTP + IPL + var + name.hashCode() + MTL + MTH));
+        return hashCode;
+    }
+
+
 }
