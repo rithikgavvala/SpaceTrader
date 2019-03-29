@@ -37,6 +37,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     private TextView piratesValue;
     private TextView distanceValue;
     private TextView systemName;
+    private TextView fuelValue;
     private ConfigurationViewModel viewModel;
 
     private Button leftArrow;
@@ -66,7 +67,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         governmentValue = (TextView) findViewById(R.id.governmentValue);
         resourceValue = (TextView) findViewById(R.id.resourceValue);
         policeValue = (TextView) findViewById(R.id.policeValue);
-        piratesValue = (TextView) findViewById(R.id.piratesValue);
+        fuelValue = (TextView) findViewById(R.id.fuelValue);
         distanceValue = (TextView) findViewById(R.id.distanceValue);
         systemName = (TextView) findViewById(R.id.systemName);
         buyButton = findViewById(R.id.buyButton);
@@ -76,9 +77,11 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         travelButton = findViewById(R.id.travelButton);
 
 
+
         Universe u = Universe.getInstance();
 
         solarSystemsArray = u.getUniverse();
+
         List<Entry> location = new ArrayList<Entry>();
         float x;
         float y;
@@ -94,6 +97,9 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         //Assigning random solar system in universe to player
         SolarSystem s = viewModel.getPlayer().getSystem();
+        Player player = viewModel.getPlayer();
+        String fuelLevel = "" + player.getFuelLevel();
+        fuelValue.setText(fuelLevel);
         systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
         techLevelValue.setText(s.getTechLevel().toString());
         resourceValue.setText(s.getResources().toString());
@@ -155,17 +161,31 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             }
         });
         SolarSystem pickPlanet = (SolarSystem) getIntent().getSerializableExtra("PLANET");
-
+        Player p = viewModel.getPlayer();
         if(pickPlanet != null){
-            Player p = viewModel.getPlayer();
+
             p.setSystem(pickPlanet);
             systemName.setText(pickPlanet.getSystemName());
             resourceValue.setText(pickPlanet.getResources().toString());
             distanceValue.setText(pickPlanet.getLocation().toString());
+            String fuel = ""  + p.getFuelLevel();
+            if(p.getFuelLevel() < 0){
+                String zero = "" + 0;
+                fuelValue.setText(zero);
+
+            }else{
+                fuelValue.setText(fuel);
+            }
+
+
             Toast toast = Toast.makeText(getApplicationContext(), "Planet Traveled:" + pickPlanet.getSystemName(), Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
             toast.show();
 
+        }
+        if(p.getFuelLevel() < 0){
+            String anotherZero = "0";
+            fuelValue.setText(anotherZero);
         }
 
 
