@@ -3,9 +3,10 @@ package com.example.codemonkeys.model;
 import android.util.Log;
 import android.widget.Space;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
     private String characterName;
     private int pilotSkill;
     private int fighterSkill;
@@ -16,7 +17,8 @@ public class Player {
     private Spaceship ship;
     private SolarSystem system;
     private double money;
-
+    private String firebaseUserID;
+    private static int inc = 0;
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
         characterName = name;
         pilotSkill = pil;
@@ -27,12 +29,16 @@ public class Player {
         credits = 1000;
         this.ship = Spaceship.Gnat;
         money = 1000;
+        firebaseUserID = Integer.toString(inc);
+        inc++;
     }
     public void updateSolarSystem(SolarSystem s){
         Log.d("Solar System Player",s.getSystemName());
         this.system = s;
     }
-
+    public String getFirebaseUserID(){
+        return firebaseUserID;
+    }
     public String getCharacterName() {
         return characterName;
     }

@@ -18,9 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,6 @@ public class ConfigurationActivity extends AppCompatActivity{
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(false);
         }
-
        //grab the dialog widgets so we can get info for later
          playerNameField = findViewById(R.id.player_name_field);
 //         pilotSpinner = findViewById(R.id.pilot_spinner);
@@ -115,11 +116,10 @@ public class ConfigurationActivity extends AppCompatActivity{
              }
          };
          fighterBar.setOnSeekBarChangeListener(mlistener);
-        traderBar.setOnSeekBarChangeListener(mlistener);
-        engineerBar.setOnSeekBarChangeListener(mlistener);
-        pilotBar.setOnSeekBarChangeListener(mlistener);
-
-
+         traderBar.setOnSeekBarChangeListener(mlistener);
+         engineerBar.setOnSeekBarChangeListener(mlistener);
+         pilotBar.setOnSeekBarChangeListener(mlistener);
+        final Model m = Model.getInstance();
         Button button = findViewById(R.id.add_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -130,18 +130,19 @@ public class ConfigurationActivity extends AppCompatActivity{
                     player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
                             difficulty);
                     viewModel.updatePlayer(player);
+                    m.save();
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                     Universe universe = Universe.getInstance();
                     universe.generateUniverse();
+
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),
                             "Skill points must add to 16", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                 }
-
                 Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
                 startActivity(intent);
 

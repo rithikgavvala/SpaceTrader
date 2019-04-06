@@ -1,6 +1,8 @@
 package com.example.codemonkeys.model;
 
-public class PlayerInteractor {
+import java.io.Serializable;
+
+public class PlayerInteractor implements Serializable {
     private Repository myRepository;
 
 

@@ -2,10 +2,11 @@ package com.example.codemonkeys.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repository {
+public class Repository implements Serializable {
     private Player currentPlayer;
     private List<TradeGood> allTradeGoods;
 
