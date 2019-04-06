@@ -3,6 +3,7 @@ package com.example.codemonkeys.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,7 @@ import com.example.codemonkeys.model.TradeGood;
 import com.example.codemonkeys.model.Transaction;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
-public class BuyExtraActivity extends AppCompatActivity {
+public class    BuyExtraActivity extends AppCompatActivity {
     private final int BUY = 1;
     private final int SELL = 0;
     private int transactionType = 1;
@@ -75,6 +76,7 @@ public class BuyExtraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int purchase_amount = amountProgress;
                 if (transactionType == BUY) {
+                    Log.i("System Info", "CURRENT SYSTEM: " + viewModel.getPlayer().getSystem().getSystemName());
                     int result = t.buy(viewModel.getPlayer(), item, purchase_amount);
                     if (result == 1) {
                         makeToast(v, "Buy Complete. You now have "

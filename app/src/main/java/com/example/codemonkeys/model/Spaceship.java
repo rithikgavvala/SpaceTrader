@@ -16,6 +16,30 @@ public enum Spaceship {
     Termite(13, 60),
     Wasp(14, 35);
 
+    public int getCargoMax() {
+        return cargoMax;
+    }
+
+    public void setCargoMax(int cargoMax) {
+        this.cargoMax = cargoMax;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setCargoList(HashMap<TradeGood, Integer> cargoList) {
+        this.cargoList = cargoList;
+    }
+
+    public int getSizeCargoList() {
+        return sizeCargoList;
+    }
+
+    public int getParsecs(){
+        return parsecs;
+    }
+
     private int parsecs;
     private int cargoMax;
     private Integer quantity;
@@ -44,6 +68,9 @@ public enum Spaceship {
         this.quantity -= quantity;
     }
 
+    public void setParsecs(int parsecs) {
+        this.parsecs = parsecs;
+    }
     public void setCargoLoad(HashMap<TradeGood, Integer> map) {
         cargoList = map;
     }

@@ -1,6 +1,8 @@
 package com.example.codemonkeys.model;
 
-public enum TechLevel {
+import java.io.Serializable;
+
+public enum TechLevel implements Serializable {
     PREAGRICULTURE(0),
     AGRICULTURE(1),
     Medieval(2),

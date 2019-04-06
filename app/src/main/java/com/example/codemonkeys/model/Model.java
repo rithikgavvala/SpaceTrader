@@ -35,6 +35,7 @@ public class Model {
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
         interactorMap.put("Market", new MarketInteractor(myRepository));
+        interactorMap.put("Solar System", new PlayerInteractor(myRepository));
     }
 
     public PlayerInteractor getPlayerInteractor() {
@@ -61,6 +62,10 @@ public class Model {
              success = false;
         }
         return success;
+    }
+
+    public PlayerInteractor getTravelInteractor() {
+        return (PlayerInteractor) interactorMap.get("Solar System");
     }
 
 }

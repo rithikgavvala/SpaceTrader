@@ -9,6 +9,7 @@ import java.util.List;
 public class Repository implements Serializable {
     private Player currentPlayer;
     private List<TradeGood> allTradeGoods;
+    private List<SolarSystem> solarSystems;
 
     public Repository() {
 
@@ -17,6 +18,10 @@ public class Repository implements Serializable {
     }
 
     public List<TradeGood> getAllTradeGoods() { return allTradeGoods;}
+
+    public List<SolarSystem> getSolarSystems() { return solarSystems;}
+
+
 
     public List<TradeGood> getTradeGoodsForSolarSystem(SolarSystem s) {
         return s.findGoodsAvailabletoBuy();
@@ -32,4 +37,9 @@ public class Repository implements Serializable {
         Log.d("Repository", "Created Player in Repository: "
                 + currentPlayer);
     }
+
+    public void updateCurrentSolarSystem(SolarSystem s) {
+
+    }
+
 }

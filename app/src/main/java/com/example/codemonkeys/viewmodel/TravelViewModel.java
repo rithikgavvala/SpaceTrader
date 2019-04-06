@@ -10,23 +10,19 @@ import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.PlayerInteractor;
 import com.example.codemonkeys.model.SolarSystem;
 
-public class ConfigurationViewModel  extends AndroidViewModel {
 
+import java.util.List;
+
+public class TravelViewModel extends AndroidViewModel {
     private PlayerInteractor interactor;
-    public ConfigurationViewModel(@NonNull Application application) {
+
+    public TravelViewModel(@NonNull Application application) {
         super(application);
         interactor = Model.getInstance().getPlayerInteractor();
     }
 
-    public void updatePlayer(Player p) {
-        interactor.updatePlayer(p);
+    public List<SolarSystem> getSolarSystems() {
+        return interactor.getPlayerUniverse();
     }
 
-    public void generatePlayerSolarSystem(SolarSystem s){
-        interactor.sendSolarSystemObject(s);
-    }
-
-    public Player getPlayer() {
-        return interactor.getPlayer();
-    }
 }

@@ -18,11 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
-import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +68,7 @@ public class ConfigurationActivity extends AppCompatActivity{
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(false);
         }
+
        //grab the dialog widgets so we can get info for later
          playerNameField = findViewById(R.id.player_name_field);
 //         pilotSpinner = findViewById(R.id.pilot_spinner);
@@ -136,6 +135,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.show();
                     Universe universe = Universe.getInstance();
                     universe.generateUniverse();
+                    viewModel.generatePlayerSolarSystem(universe.getUniverse().get((int)(Math.random() * 15)));
 
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),
@@ -143,6 +143,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                 }
+
                 Intent intent = new Intent(ConfigurationActivity.this, UniverseGenerationActivity.class);
                 startActivity(intent);
 
