@@ -25,6 +25,7 @@ import com.example.codemonkeys.viewmodel.TravelViewModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TravelActivity extends AppCompatActivity {
     public static final String SOLARSYSTEM_DATA = "SOLARSYSTEM_DATA";
@@ -66,11 +67,42 @@ public class TravelActivity extends AppCompatActivity {
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                         toast.show();
                     }else{
-                        Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
-                        intent.putExtra("PLANET", solarSys);
-                        Log.d("PLANET TRAVELED", solarSys.getSystemName());
-                        startActivityForResult(intent, 1);
-                    }
+                        ArrayList<Class> activityList = new ArrayList<>();
+                        activityList.add(RandomEventActivity.class);
+                        activityList.add(UniverseGenerationActivity.class);
+
+                        Random gen = new Random();
+                        int num = gen.nextInt(3) + 1;
+                        Class activity = null;
+
+                        switch (num){
+                            case 1:
+                                activity = RandomEventActivity.class;
+                                activityList.remove(RandomEventActivity.class);
+                                Toast toast = Toast.makeText(getApplicationContext(), "You have encountered a random event.", Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
+                                toast.show();
+
+                                break;
+                            default:
+                                activity = UniverseGenerationActivity.class;
+                                activityList.remove(UniverseGenerationActivity.class);
+                                break;
+                        }
+                        Intent intent = new Intent(getApplicationContext(), activity);
+                        startActivity(intent);
+
+
+
+
+
+                            //Intent intent = new Intent(TravelActivity.this, UniverseGenerationActivity.class);
+                            //intent.putExtra("PLANET", solarSys);
+                            //Log.d("PLANET TRAVELED", solarSys.getSystemName());
+                            //startActivityForResult(intent, 1);
+                        }
+
+
 
                 }
             });
