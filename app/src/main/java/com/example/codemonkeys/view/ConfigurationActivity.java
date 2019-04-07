@@ -115,11 +115,10 @@ public class ConfigurationActivity extends AppCompatActivity{
              }
          };
          fighterBar.setOnSeekBarChangeListener(mlistener);
-        traderBar.setOnSeekBarChangeListener(mlistener);
-        engineerBar.setOnSeekBarChangeListener(mlistener);
-        pilotBar.setOnSeekBarChangeListener(mlistener);
-
-
+         traderBar.setOnSeekBarChangeListener(mlistener);
+         engineerBar.setOnSeekBarChangeListener(mlistener);
+         pilotBar.setOnSeekBarChangeListener(mlistener);
+        final Model m = Model.getInstance();
         Button button = findViewById(R.id.add_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -130,6 +129,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                     player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
                             difficulty);
                     viewModel.updatePlayer(player);
+                    m.save();
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
