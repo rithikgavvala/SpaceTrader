@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity{
     private ImageView title;
     private Button newButton;
     private Button loadButton;
+    boolean load = false;
 
     @Override
     protected void onStart() {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
         loadButton.setOnClickListener((view) -> {
+            load = true;
             rocketShip.startAnimation(animation);
         });
 
@@ -80,6 +82,9 @@ public class MainActivity extends AppCompatActivity{
         @Override
         public void onAnimationEnd(Animation animation) {
             Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
+            if(load == true) {
+                intent = new Intent(MainActivity.this, UniverseGenerationActivity.class);
+            }
             startActivity(intent);
             rocketShip.setVisibility(View.INVISIBLE);
 
