@@ -132,7 +132,8 @@ public class ConfigurationActivity extends AppCompatActivity{
                     //create databaseref object
                     //create a map of
                     viewModel.updatePlayer(player);
-                    m.save();
+                    m.savePlayer();
+                    m.saveUniverse();
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();

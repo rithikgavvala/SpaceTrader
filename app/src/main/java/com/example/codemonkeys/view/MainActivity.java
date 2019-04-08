@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity{
         });
         loadButton.setOnClickListener((view) -> {
             load = true;
-            Model.getInstance().load();
+            Model.getInstance().loadPlayer();
+            Model.getInstance().loadUniverse();
             rocketShip.startAnimation(animation);
         });
 
