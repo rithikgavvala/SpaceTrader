@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.SolarSystem;
 import com.example.codemonkeys.model.Universe;
@@ -200,6 +201,9 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
     protected void onResume() {
 
         super.onResume();
+        Model myModel = Model.getInstance();
+        myModel.savePlayer();
+        myModel.saveUniverse();
         Player player = viewModel.getPlayer();
 
         String playerCredits = "" + player.getMoney();
