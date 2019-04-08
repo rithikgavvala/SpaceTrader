@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Model;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity{
         });
         loadButton.setOnClickListener((view) -> {
             load = true;
+            Model.getInstance().load();
             rocketShip.startAnimation(animation);
         });
 
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity{
             moon.setVisibility(View.INVISIBLE);
             title.setVisibility(View.INVISIBLE);
             newButton.setVisibility(View.INVISIBLE);
+            loadButton.setVisibility(View.INVISIBLE);
 
         }
 
