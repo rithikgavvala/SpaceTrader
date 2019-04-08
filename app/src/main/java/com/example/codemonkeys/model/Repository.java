@@ -23,6 +23,8 @@ public class Repository implements Serializable {
 
 
 
+
+
     public List<TradeGood> getTradeGoodsForSolarSystem(SolarSystem s) {
         return s.findGoodsAvailabletoBuy();
     }

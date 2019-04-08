@@ -22,7 +22,7 @@ public class TravelViewModel extends AndroidViewModel {
     }
 
     public List<SolarSystem> getSolarSystems() {
-        return interactor.getPlayerUniverse();
+        return interactor.getPlayer().getUniverse().getPlanets();
     }
 
 }

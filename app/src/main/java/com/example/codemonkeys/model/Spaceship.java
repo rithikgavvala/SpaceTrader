@@ -5,16 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public enum Spaceship {
-    Flea(20, 10),
-    Gnat(15, 15),
-    Firefly(17, 20),
-    Mosquito(13, 15),
-    Bumblebee(15, 25),
-    Beetle(14, 50),
-    Hornet(16, 20),
-    Grasshopper(15, 30),
-    Termite(13, 60),
-    Wasp(14, 35);
+    Flea("Flea", 20, 10, 2),
+    Gnat("Gnat", 15, 15, 7),
+    Firefly("Firefly", 17, 20, 7),
+    Mosquito("Mosquito", 13, 15, 25),
+    Bumblebee("Bumblebee", 15, 25, 10),
+    Beetle("Beetle", 14, 50, 5),
+    Hornet("Hornet", 16, 20, 16),
+    Grasshopper("Grasshopper", 15, 30, 12),
+    Termite("Termite", 13, 60, 20),
+    Wasp("Wasp", 14, 35, 20);
 
     public int getCargoMax() {
         return cargoMax;
@@ -40,18 +40,38 @@ public enum Spaceship {
         return parsecs;
     }
 
+    private String name;
+    private int hullStrength;
     private int parsecs;
     private int cargoMax;
     private Integer quantity;
     private HashMap<TradeGood, Integer> cargoList;
     private int sizeCargoList;
 
-    Spaceship(int parsecs, int cargoMax){
+    Spaceship(String name, int parsecs, int cargoMax, int hullStrength){
+        this.name = name;
         this.parsecs = parsecs;
         this.cargoMax = cargoMax;
+        this.hullStrength = hullStrength;
         sizeCargoList = 0;
         quantity = 0;
         cargoList = new HashMap<TradeGood, Integer>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHullStrength() {
+        return hullStrength;
+    }
+
+    public void setHullStrength(int hullStrength) {
+        this.hullStrength = hullStrength;
     }
 
     public HashMap<TradeGood, Integer> getCargoList() {

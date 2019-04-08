@@ -38,6 +38,7 @@ public class MarketActivity extends AppCompatActivity {
     private Intent intent;
     private final int BUY = 1;
     private final int SELL = 0;
+    private final int TRADE = 2;
     private TextView itemMessage;
 
 
@@ -100,7 +101,22 @@ public class MarketActivity extends AppCompatActivity {
             }
 
             adapter.setTradeGoodsList(viewModel.getSellTradeGoods());
-        } else {
+        } else if(getIntent().getIntExtra("TRANSACTION", TRADE) == TRADE){
+
+            List<TradeGood> listOfTradeGoods = viewModel.getSellTradeGoods();
+            if (listOfTradeGoods.size() == 0) {
+                itemMessage.setText("No items to sell");
+                itemMessage.setVisibility(View.VISIBLE);
+
+            }
+
+            adapter.setTradeGoodsList(viewModel.getSellTradeGoods());
+
+        }
+
+
+
+        else {
             List<TradeGood> allGoods = viewModel.getAllHoldGoods();
             if (allGoods.size() == 0) {
                 itemMessage.setVisibility(View.VISIBLE);

@@ -13,6 +13,7 @@ public class SolarSystem implements Serializable {
     private Resources resources;
     private List<TradeGood> listofResources;
 
+
     public SolarSystem(String systemName, Location loc, TechLevel tl, Resources pol) {
         this.systemName = systemName;
         this.location = loc;
@@ -20,6 +21,7 @@ public class SolarSystem implements Serializable {
         this.resources = pol;
         this.location = loc;
         this.listofResources = findGoodsAvailabletoBuy();
+
     }
 
     public Location getLocation() {

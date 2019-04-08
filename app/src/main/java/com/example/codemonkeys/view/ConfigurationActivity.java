@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
@@ -128,6 +129,8 @@ public class ConfigurationActivity extends AppCompatActivity{
                 if(sum == 16) {
                     player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
                             difficulty);
+                    //create databaseref object
+                    //create a map of
                     viewModel.updatePlayer(player);
                     m.save();
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
@@ -135,7 +138,7 @@ public class ConfigurationActivity extends AppCompatActivity{
                     toast.show();
                     Universe universe = Universe.getInstance();
                     universe.generateUniverse();
-                    viewModel.generatePlayerSolarSystem(universe.getUniverse().get((int)(Math.random() * 15)));
+                    viewModel.generatePlayerSolarSystem(universe.getPlanets().get((int)(Math.random() * 15)));
 
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),

@@ -224,7 +224,7 @@ public class Universe {
         }
     }
 
-    public List<SolarSystem> getUniverse() {
+    public List<SolarSystem> getPlanets() {
         List<SolarSystem> systems = Arrays.asList(solarSystems);
         return systems;
     }

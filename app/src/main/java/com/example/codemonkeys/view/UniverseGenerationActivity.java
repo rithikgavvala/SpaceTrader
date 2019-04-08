@@ -80,7 +80,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
         Universe u = Universe.getInstance();
 
-        solarSystemsArray = u.getUniverse();
+
+        solarSystemsArray = u.getPlanets();
 
         List<Entry> location = new ArrayList<Entry>();
         float x;
@@ -98,6 +99,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         //Assigning random solar system in universe to player
         SolarSystem s = viewModel.getPlayer().getSystem();
         Player player = viewModel.getPlayer();
+        player.setUniverse(u);
         String fuelLevel = "" + player.getFuelLevel();
         fuelValue.setText(fuelLevel);
         String playerCredits = "" + player.getCredits();
