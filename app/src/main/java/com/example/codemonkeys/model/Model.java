@@ -1,7 +1,9 @@
 package com.example.codemonkeys.model;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.util.Log;
 
+import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -72,7 +74,9 @@ public class Model {
     public boolean load() {
         boolean success = true;
         try {
-            String serializedObject = "";
+            //final String serializedObject;
+            /*viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+            Player myPlayer = viewModel.getPlayer();*/
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("players");
             // Read from the database
@@ -81,8 +85,26 @@ public class Model {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    serializedObject = dataSnapshot.getValue(String.class);
+                    //myPlayer.setSerializedObject(dataSnapshot.getValue(String.class));
+                    String serializedObject = dataSnapshot.getValue(String.class);
                     Log.d("serial:",serializedObject);
+                    byte b[] = serializedObject.getBytes();
+                    ByteArrayInputStream bi = new ByteArrayInputStream(b);
+                    ObjectInputStream si = null;
+                    try {
+                        si = new ObjectInputStream(bi);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        PlayerInteractor obj = (PlayerInteractor) si.readObject();
+                        interactorMap.put("Player", obj);
+                        interactorMap.put("Solar System", obj);
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -91,10 +113,6 @@ public class Model {
                     Log.w("serial", "Failed to read value.", error.toException());
                 }
             });
-            byte b[] = serializedObject.getBytes();
-            ByteArrayInputStream bi = new ByteArrayInputStream(b);
-            ObjectInputStream si = new ObjectInputStream(bi);
-            PlayerInteractor obj = (PlayerInteractor) si.readObject();
         } catch (Exception e) {
             System.out.println(e);
             success = false;
