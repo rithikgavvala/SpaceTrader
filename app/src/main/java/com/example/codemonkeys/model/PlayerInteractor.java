@@ -1,8 +1,9 @@
 package com.example.codemonkeys.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PlayerInteractor {
+public class PlayerInteractor implements Serializable {
     private Repository myRepository;
 
 
@@ -16,10 +17,11 @@ public class PlayerInteractor {
     public Player getPlayer() {
         return myRepository.getPlayer();
     }
-    public List<SolarSystem> getPlayerUniverse() {return myRepository.getSolarSystems(); }
-
     public void sendSolarSystemObject(SolarSystem s){
         myRepository.getPlayer().updateSolarSystem(s);
+    }
+    public List<SolarSystem> getPlayerSystems(){
+        return  myRepository.getPlayer().getUniverse().getPlanets();
     }
 
 

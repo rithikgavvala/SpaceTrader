@@ -19,14 +19,15 @@ public class MainActivity extends AppCompatActivity{
     private ImageView rocketShip;
     private ImageView moon;
     private ImageView title;
-    private Button start;
+    private Button newButton;
+    private Button loadButton;
 
     @Override
     protected void onStart() {
         super.onStart();
         moon.setVisibility(View.VISIBLE);
         title.setVisibility(View.VISIBLE);
-        start.setVisibility(View.VISIBLE);
+        newButton.setVisibility(View.VISIBLE);
         rocketShip.setVisibility(View.VISIBLE);
     }
     @Override
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity{
 
 
         //This code sets up our button at bottom of screen to add a new course
-        start =  findViewById(R.id.button_start_game);
-        start.setOnClickListener(new View.OnClickListener() {
+        newButton =  findViewById(R.id.new_button);
+        loadButton = findViewById(R.id.load_button);
+        newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rocketShip.startAnimation(animation);
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+        loadButton.setOnClickListener((view) -> {
+            rocketShip.startAnimation(animation);
+        });
+
+
 
 
     }
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity{
         public void onAnimationStart(Animation animation) {
             moon.setVisibility(View.INVISIBLE);
             title.setVisibility(View.INVISIBLE);
-            start.setVisibility(View.INVISIBLE);
+            newButton.setVisibility(View.INVISIBLE);
 
         }
 

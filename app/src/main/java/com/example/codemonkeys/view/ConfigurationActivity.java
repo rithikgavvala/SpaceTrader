@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
@@ -115,11 +116,10 @@ public class ConfigurationActivity extends AppCompatActivity{
              }
          };
          fighterBar.setOnSeekBarChangeListener(mlistener);
-        traderBar.setOnSeekBarChangeListener(mlistener);
-        engineerBar.setOnSeekBarChangeListener(mlistener);
-        pilotBar.setOnSeekBarChangeListener(mlistener);
-
-
+         traderBar.setOnSeekBarChangeListener(mlistener);
+         engineerBar.setOnSeekBarChangeListener(mlistener);
+         pilotBar.setOnSeekBarChangeListener(mlistener);
+        final Model m = Model.getInstance();
         Button button = findViewById(R.id.add_button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -129,13 +129,16 @@ public class ConfigurationActivity extends AppCompatActivity{
                 if(sum == 16) {
                     player = new Player(name, pilotProgress, fighterProgress, traderProgress, engineerProgress,
                             difficulty);
+                    //create databaseref object
+                    //create a map of
                     viewModel.updatePlayer(player);
+                    m.save();
                     Toast toast = Toast.makeText(v.getContext(), "Created: " + name, Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                     toast.show();
                     Universe universe = Universe.getInstance();
                     universe.generateUniverse();
-                    viewModel.generatePlayerSolarSystem(universe.getUniverse().get((int)(Math.random() * 15)));
+                    viewModel.generatePlayerSolarSystem(universe.getPlanets().get((int)(Math.random() * 15)));
 
                 } else {
                     Toast toast = Toast.makeText(v.getContext(),

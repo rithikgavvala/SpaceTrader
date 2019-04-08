@@ -12,6 +12,7 @@
         android:id="@+id/planet_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         tools:listitem="@layout/travel_item" />
 
     <TextView

@@ -1,7 +1,6 @@
 package com.example.codemonkeys.model;
 
 import android.util.Log;
-import android.widget.Space;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +46,7 @@ public class Player {
     private String difficulty;
     private int credits;
     private Spaceship ship;
+    private Universe universe;
 
     private int fuelLevel;
 
@@ -67,7 +67,13 @@ public class Player {
         return fuelLevel;
     }
 
+    public Universe getUniverse() {
+        return universe;
+    }
 
+    public void setUniverse(Universe universe) {
+        this.universe = universe;
+    }
 
     public void setEngineerSkill(int engineerSkill) {
         this.engineerSkill = engineerSkill;
@@ -143,7 +149,7 @@ public class Player {
         List<SolarSystem> travelList = new ArrayList<>();
         Universe u = Universe.getInstance();
         List<SolarSystem> currPlanets = new ArrayList<>();
-        currPlanets = u.getUniverse();
+        currPlanets = u.getPlanets();
 
         for(int i = 0; i < currPlanets.size(); i++){
             if(calcDistance(currPlanets.get(i), system)  < 5 * ship.getParsecs()

@@ -45,20 +45,35 @@
         app:srcCompat="@drawable/spaceship" />
 
     <Button
-        android:id="@+id/button_start_game"
-        android:layout_width="349dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:id="@+id/load_button"
+        android:layout_width="135dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorAccent"
         android:fontFamily="@font/roboto_bold"
-        android:text="START"
+        android:text="Load"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rocketShip"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <Button
+        android:id="@+id/new_button"
+        android:layout_width="135dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/roboto_bold"
+        android:text="NEW"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rocketShip" />
+        app:layout_constraintTop_toBottomOf="@+id/rocketShip"
+        app:layout_constraintVertical_bias="0.509" />
 
 </android.support.constraint.ConstraintLayout>

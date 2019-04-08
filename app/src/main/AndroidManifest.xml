@@ -31,6 +31,9 @@
         <activity
             android:name=".view.TravelActivity"
             android:parentActivityName=".view.UniverseGenerationActivity" />
+        <activity
+            android:name=".view.RandomEventActivity"
+            android:parentActivityName=".view.TravelActivity" />
 
 
         <meta-data
@@ -41,3 +44,4 @@
 
 
 </manifest>
+
