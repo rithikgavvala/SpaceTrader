@@ -50,7 +50,6 @@ public class TravelActivity extends AppCompatActivity {
             travelMessage.setVisibility(View.INVISIBLE);
             travelAdapter = new TravelAdapter();
             recyclerView.setAdapter(travelAdapter);
-            travelAdapter.setSolarSystemList(viewModel.getPlayer().getTravelList());
             travelAdapter.setOnSolarSystemClickListener(new TravelAdapter.OnSolarSystemClickListener() {
                 @Override
                 public void onSolarSystemClicked(SolarSystem solarSys) {

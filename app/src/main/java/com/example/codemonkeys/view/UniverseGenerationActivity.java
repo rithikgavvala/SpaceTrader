@@ -3,6 +3,7 @@ package com.example.codemonkeys.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -100,7 +101,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         Player player = viewModel.getPlayer();
         String fuelLevel = "" + player.getFuelLevel();
         fuelValue.setText(fuelLevel);
-        String playerCredits = "" + player.getCredits();
+        String playerCredits = "" + player.getMoney();
         creditsValue.setText(playerCredits);
         systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
         techLevelValue.setText(s.getTechLevel().toString());
@@ -190,6 +191,18 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             fuelValue.setText(anotherZero);
         }
 
+
+
+    }
+
+    protected void onResume() {
+
+        super.onResume();
+        Player player = viewModel.getPlayer();
+
+        String playerCredits = "" + player.getMoney();
+        creditsValue.setText(playerCredits);
+        Log.i("TRANSACTION", "CREDITS: " + playerCredits);
 
 
     }
