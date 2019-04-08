@@ -228,4 +228,36 @@ public class Universe {
         List<SolarSystem> systems = Arrays.asList(solarSystems);
         return systems;
     }
+
+    public Set<String> getSystems () {
+        return systems;
+    }
+
+    public void setSystems (Set<String> systems) {
+        this.systems = systems;
+    }
+
+    public Set<Location> getLocations () {
+        return locations;
+    }
+
+    public void setLocations (Set<Location> locations) {
+        this.locations = locations;
+    }
+
+    public TechLevel[] getTechLevel () {
+        return actualLevels;
+    }
+
+    public void setTechLevel (TechLevel[] actualLevels) {
+        this.actualLevels = actualLevels;
+    }
+
+    public Resources[] getResources () {
+        return actualResources;
+    }
+
+    public void setResources (Resources[] actualResources) {
+        this.actualResources= actualResources;
+    }
 }

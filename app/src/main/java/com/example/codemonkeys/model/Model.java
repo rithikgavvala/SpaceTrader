@@ -52,7 +52,8 @@ public class Model {
     public MarketInteractor getMarketInteractor() {
         return (MarketInteractor) interactorMap.get("Market");
     }
-    public boolean save() {
+
+    public boolean savePlayer() {
        boolean success = true;
        try {
            ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -60,7 +61,7 @@ public class Model {
            so.writeObject(inter);
            so.flush();
            String serializedObject = bo.toString();
-           Log.d("serial:",serializedObject);
+           Log.d("player serial:",serializedObject);
            final FirebaseDatabase database = FirebaseDatabase.getInstance();
            DatabaseReference ref = database.getReference("players");
            ref.push().setValue(serializedObject);
@@ -71,12 +72,9 @@ public class Model {
         return success;
     }
 
-    public boolean load() {
+    public boolean loadPlayer() {
         boolean success = true;
         try {
-            //final String serializedObject;
-            /*viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
-            Player myPlayer = viewModel.getPlayer();*/
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("players");
             // Read from the database
@@ -85,9 +83,8 @@ public class Model {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
-                    //myPlayer.setSerializedObject(dataSnapshot.getValue(String.class));
                     String serializedObject = dataSnapshot.getValue(String.class);
-                    Log.d("serial:",serializedObject);
+                    Log.d("player serial:",serializedObject);
                     byte b[] = serializedObject.getBytes();
                     ByteArrayInputStream bi = new ByteArrayInputStream(b);
                     ObjectInputStream si = null;
@@ -100,6 +97,73 @@ public class Model {
                         PlayerInteractor obj = (PlayerInteractor) si.readObject();
                         interactorMap.put("Player", obj);
                         interactorMap.put("Solar System", obj);
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("serial", "Failed to read value.", error.toException());
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e);
+            success = false;
+        }
+        return success;
+    }
+
+    public boolean saveUniverse() {
+        boolean success = true;
+        try {
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream so = new ObjectOutputStream(bo);
+            so.writeObject(Universe.getInstance());
+            so.flush();
+            String serializedObject = bo.toString();
+            Log.d("universe serial:",serializedObject);
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("universe");
+            ref.push().setValue(serializedObject);
+        } catch (Exception e) {
+            System.out.println(e);
+            success = false;
+        }
+        return success;
+    }
+
+    public boolean loadUniverse() {
+        boolean success = true;
+        try {
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("universe");
+            // Read from the database
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String serializedObject = dataSnapshot.getValue(String.class);
+                    Log.d("universe serial:",serializedObject);
+                    byte b[] = serializedObject.getBytes();
+                    ByteArrayInputStream bi = new ByteArrayInputStream(b);
+                    ObjectInputStream si = null;
+                    try {
+                        si = new ObjectInputStream(bi);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        Universe obj = (Universe) si.readObject();
+                        Universe myUniverse = Universe.getInstance();
+                        myUniverse.setSystems(obj.getSystems());
+                        myUniverse.setLocations(obj.getLocations());
+                        myUniverse.setResources(obj.getResources());
+                        myUniverse.setTechLevel(obj.getTechLevel());
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
