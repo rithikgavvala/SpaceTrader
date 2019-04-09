@@ -2,10 +2,11 @@ package com.example.codemonkeys.model;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
     public void setSystem(SolarSystem system) {
         this.system = system;
     }
