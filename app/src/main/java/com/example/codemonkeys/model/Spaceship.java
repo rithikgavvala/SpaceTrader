@@ -1,8 +1,10 @@
 package com.example.codemonkeys.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public enum Spaceship {
     Flea("Flea", 20, 10, 2),
@@ -74,7 +76,7 @@ public enum Spaceship {
         this.hullStrength = hullStrength;
     }
 
-    public HashMap<TradeGood, Integer> getCargoList() {
+    public Map<TradeGood, Integer> getCargoList() {
         return cargoList;
     }
 

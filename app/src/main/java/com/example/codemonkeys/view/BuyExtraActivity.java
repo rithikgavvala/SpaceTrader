@@ -20,11 +20,7 @@ public class    BuyExtraActivity extends AppCompatActivity {
     private final int BUY = 1;
     private final int SELL = 0;
     private int transactionType = 1;
-    private TextView itemTitle;
-    private Button transactionButton;
     private TextView itemProgress;
-    private SeekBar.OnSeekBarChangeListener mlistener;
-    private SeekBar amountBar;
     private int amountProgress;
     private Transaction t;
     private TradeGood item;
@@ -32,17 +28,19 @@ public class    BuyExtraActivity extends AppCompatActivity {
 
 
     private Bundle extras;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_extra_activity);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         item = (TradeGood) getIntent().getSerializableExtra("ITEM");
         transactionType = getIntent().getIntExtra("TRANSACTION", 1);
-        itemTitle = (TextView) findViewById(R.id.itemTitle);
-        transactionButton = (Button) findViewById(R.id.transactionButton);
-        itemProgress = (TextView) findViewById(R.id.buyAmount);
-        amountBar = (SeekBar) findViewById(R.id.amountBar);
-        mlistener = new SeekBar.OnSeekBarChangeListener() {
+        TextView itemTitle = findViewById(R.id.itemTitle);
+        Button transactionButton = findViewById(R.id.transactionButton);
+        itemProgress = findViewById(R.id.buyAmount);
+        SeekBar amountBar = findViewById(R.id.amountBar);
+        SeekBar.OnSeekBarChangeListener mlistener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int id = seekBar.getId();
@@ -104,7 +102,7 @@ public class    BuyExtraActivity extends AppCompatActivity {
 
             }
 
-            private void makeToast(View v, String s) {
+            private void makeToast(View v, CharSequence s) {
                 Toast toast = Toast.makeText(v.getContext(),
                         s, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);

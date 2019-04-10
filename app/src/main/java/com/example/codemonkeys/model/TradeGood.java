@@ -8,12 +8,12 @@ import java.util.Random;
 
 public class TradeGood implements Serializable {
 
-    private double basePrice;
-    private int MTLP;
-    private int MTLU;
-    private int TTP;
-    private int IPL;
-    private int var;
+    private final double basePrice;
+    private final int MTLP;
+    private final int MTLU;
+    private final int TTP;
+    private final int IPL;
+    private final int var;
     private String name;
     private boolean IE;
     private boolean CR;
@@ -39,6 +39,11 @@ public class TradeGood implements Serializable {
         this.IPL = te.getIPL();
         this.var = te.getVar();
         this.name = te.name();
+    }
+
+    public TradeGood() {
+        this(0, 0, 0, 0, 0, 0);
+
     }
 
     public int getMTLP(){

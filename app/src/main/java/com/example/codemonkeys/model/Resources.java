@@ -2,7 +2,7 @@ package com.example.codemonkeys.model;
 
 import java.io.Serializable;
 
-public enum Resources implements Serializable {
+public enum Resources {
     NOSPECIALRESOURCES,
     MINERALRICH,
     MINERALPOOR,

@@ -22,11 +22,8 @@ public class RandomEventActivity extends AppCompatActivity {
     private final int POLICE = 0;
     private final int TRADE = 1;
 
-    private Button attackButton;
-    private Button ignoreButton;
     private Button tradeButton;
 
-    private TextView encounterMessage;
     private ConfigurationViewModel viewModel;
 
 
@@ -44,15 +41,14 @@ public class RandomEventActivity extends AppCompatActivity {
         System.out.println(randShip.getName());
 
 
-
-        encounterMessage = findViewById(R.id.encounter_message);
+        TextView encounterMessage = findViewById(R.id.encounter_message);
 
         String message = "At " + clicks +" from the planet you want to travel to, you encounter a trader " + randShip.getName();
 
         encounterMessage.setText(message);
 
-        attackButton = findViewById(R.id.attack_button);
-        ignoreButton = findViewById(R.id.ignore_button);
+        Button attackButton = findViewById(R.id.attack_button);
+        Button ignoreButton = findViewById(R.id.ignore_button);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         Player p = viewModel.getPlayer();
 

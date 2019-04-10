@@ -73,8 +73,8 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.SolarSyste
     }
 
     class SolarSystemViewHolder extends RecyclerView.ViewHolder {
-        private TextView SolarSystemName;
-        private TextView SolarSystemTechLevel;
+        private final TextView SolarSystemName;
+        private final TextView SolarSystemTechLevel;
 
 
 

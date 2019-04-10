@@ -1,13 +1,16 @@
 package com.example.codemonkeys.model;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayInputStream;
@@ -21,15 +24,17 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Model {
-    private Repository myRepository;
-    private Map<String, Object> interactorMap;
+public final class Model {
+    private final Repository myRepository;
+    private final Map<String, Object> interactorMap;
 
-    private static Model instance = new Model();
+    private static final Model instance = new Model();
 
-    private PlayerInteractor inter;
+    private final PlayerInteractor inter;
 
-    public static Model getInstance() { return instance; }
+    public static Model getInstance() {
+        return instance;
+    }
 
 
     private Model() {
@@ -54,60 +59,47 @@ public class Model {
     }
 
     public boolean savePlayer() {
-       boolean success = true;
-       try {
-           ByteArrayOutputStream bo = new ByteArrayOutputStream();
-           ObjectOutputStream so = new ObjectOutputStream(bo);
-           so.writeObject(inter);
-           so.flush();
-           String serializedObject = bo.toString();
-           Log.d("player serial:",serializedObject);
-           final FirebaseDatabase database = FirebaseDatabase.getInstance();
-           DatabaseReference ref = database.getReference("players");
-           ref.push().setValue(serializedObject);
+        boolean success = true;
+        try {
+
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("players");
+            Map<String, Player> map = new HashMap<>();
+            map.put("playerChild", myRepository.getPlayer());
+            ref.child("Player").setValue(map);
+            //DatabaseReference push = ref.push();
+            //push.setValue(map);
         } catch (Exception e) {
-             System.out.println(e);
-             success = false;
+            System.out.println(e);
+            Log.i("Firebase", "EXCEPTION: " + e);
+            success = false;
         }
+
+        Log.i("Firebase", "SUCCESS: " + success);
         return success;
     }
 
-    public boolean loadPlayer() {
-        boolean success = true;
+    public boolean load(DataCallback dataCallback) {
+        boolean success = false;
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         try {
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("players");
             // Read from the database
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    String serializedObject = dataSnapshot.getValue(String.class);
-                    Log.d("player serial:",serializedObject);
-                    byte b[] = serializedObject.getBytes();
-                    ByteArrayInputStream bi = new ByteArrayInputStream(b);
-                    ObjectInputStream si = null;
-                    try {
-                        si = new ObjectInputStream(bi);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        PlayerInteractor obj = (PlayerInteractor) si.readObject();
-                        interactorMap.put("Player", obj);
-                        interactorMap.put("Solar System", obj);
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                    Player p = dataSnapshot.child("Player/playerChild").getValue(Player.class);
+                    Log.i("callback", "data-change player: " + p.toString());
+                    myRepository.updateCurrentPlayer(p);
+                    Universe u = dataSnapshot.child("Universe/universeChild").getValue(Universe.class);
+                    Universe myUniverse = Universe.getInstance();
+                    myUniverse.setUniverse(u);
+                    dataCallback.onDataCallback(p, u);
 
+                }
                 @Override
                 public void onCancelled(DatabaseError error) {
                     // Failed to read value
-                    Log.w("serial", "Failed to read value.", error.toException());
                 }
             });
         } catch (Exception e) {
@@ -118,74 +110,45 @@ public class Model {
     }
 
     public boolean saveUniverse() {
-        boolean success = true;
-        try {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            ObjectOutputStream so = new ObjectOutputStream(bo);
-            so.writeObject(Universe.getInstance());
-            so.flush();
-            String serializedObject = bo.toString();
-            Log.d("universe serial:",serializedObject);
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference("universe");
-            ref.push().setValue(serializedObject);
-        } catch (Exception e) {
-            System.out.println(e);
-            success = false;
-        }
-        return success;
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference universeRef = database.getReference("players");
+        HashMap<String, Universe> map = new HashMap<String, Universe>();
+
+        map.put("universeChild", Universe.getInstance());
+        universeRef.child("Universe").setValue(map);
+        //DatabaseReference push = universeRef.push();
+        //push.setValue(map);
+        return true;
+
+
     }
 
-    public boolean loadUniverse() {
+/*    public boolean loadUniverse(DataCallback dataCallback) {
         boolean success = true;
-        try {
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference ref = database.getReference("universe");
-            // Read from the database
-            ref.addValueEventListener(new ValueEventListener() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference universeRef = database.getReference("universe");
+        if (Universe.getInstance().getSystems() == null) {
+            universeRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    String serializedObject = dataSnapshot.getValue(String.class);
-                    Log.d("universe serial:",serializedObject);
-                    byte b[] = serializedObject.getBytes();
-                    ByteArrayInputStream bi = new ByteArrayInputStream(b);
-                    ObjectInputStream si = null;
-                    try {
-                        si = new ObjectInputStream(bi);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        Universe obj = (Universe) si.readObject();
-                        Universe myUniverse = Universe.getInstance();
-                        myUniverse.setSystems(obj.getSystems());
-                        myUniverse.setLocations(obj.getLocations());
-                        myUniverse.setResources(obj.getResources());
-                        myUniverse.setTechLevel(obj.getTechLevel());
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Universe u = dataSnapshot.getValue(Universe.class);
+                    Universe myUniverse = Universe.getInstance();
+                    myUniverse.setUniverse(u);
+                    dataCallback.onUniverseCallback(u);
                 }
 
                 @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w("serial", "Failed to read value.", error.toException());
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
             });
-        } catch (Exception e) {
-            System.out.println(e);
-            success = false;
         }
         return success;
-    }
+
+    }*/
 
     public PlayerInteractor getTravelInteractor() {
         return (PlayerInteractor) interactorMap.get("Solar System");
     }
+
 
 }

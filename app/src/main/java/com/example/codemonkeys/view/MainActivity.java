@@ -4,6 +4,7 @@ package com.example.codemonkeys.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -12,7 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.codemonkeys.R;
+import com.example.codemonkeys.model.DataCallback;
 import com.example.codemonkeys.model.Model;
+import com.example.codemonkeys.model.Player;
+import com.example.codemonkeys.model.Universe;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -22,7 +26,7 @@ public class MainActivity extends AppCompatActivity{
     private ImageView title;
     private Button newButton;
     private Button loadButton;
-    boolean load = false;
+    boolean load;
 
     @Override
     protected void onStart() {
@@ -63,9 +67,15 @@ public class MainActivity extends AppCompatActivity{
         });
         loadButton.setOnClickListener((view) -> {
             load = true;
-            Model.getInstance().loadPlayer();
-            Model.getInstance().loadUniverse();
-            rocketShip.startAnimation(animation);
+            Model.getInstance().load(new DataCallback() {
+                @Override
+                public void onDataCallback(Player p, Universe u) {
+                    Log.i("callback", "PLAYER AND UNIVERSE ARE HERE WOO " + p + " " + u.getPlanets());
+
+                    rocketShip.startAnimation(animation);
+                }
+
+            });
         });
 
 

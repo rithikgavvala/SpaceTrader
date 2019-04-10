@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PlayerInteractor implements Serializable {
-    private Repository myRepository;
+    private final Repository myRepository;
 
 
     public PlayerInteractor(Repository repo) {
@@ -21,7 +21,7 @@ public class PlayerInteractor implements Serializable {
         myRepository.getPlayer().updateSolarSystem(s);
     }
     public List<SolarSystem> getPlayerSystems(){
-        return  myRepository.getPlayer().getUniverse().getPlanets();
+        return Universe.getInstance().getPlanets();
     }
 
 

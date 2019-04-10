@@ -22,7 +22,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     /** a copy of the list of students in the model */
     //TODO call function to create sellItemsList
     private List<TradeGood> sellItemsList = new ArrayList<>();
-    private List<TradeGood> buyItemsList = new ArrayList<>();
+    private final List<TradeGood> buyItemsList = new ArrayList<>();
 
     /** a listener for a touch event on the student */
     private OnItemClickListener listener;
@@ -68,8 +68,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
      * This is a holder for the widgets associated with a single entry in the list of students
      */
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
-        private TextView price;
+        private final TextView name;
+        private final TextView price;
 
 
         public ItemViewHolder(@NonNull View itemView) {

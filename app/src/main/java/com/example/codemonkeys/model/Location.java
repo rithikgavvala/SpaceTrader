@@ -11,6 +11,10 @@ public class Location implements Comparable, Serializable {
         this.y = y;
     }
 
+    public Location() {
+
+    }
+
     public int getX() {
         return x;
     }

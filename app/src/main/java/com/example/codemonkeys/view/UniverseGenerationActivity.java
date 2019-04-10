@@ -30,30 +30,19 @@ import java.util.List;
 
 
 public class UniverseGenerationActivity extends AppCompatActivity implements OnChartValueSelectedListener {
-    private ScatterChart chart;
-    private TextView sizeValue;
     private TextView techLevelValue;
-    private TextView governmentValue;
     private TextView resourceValue;
     private TextView creditsValue;
     private TextView piratesValue;
     private TextView distanceValue;
-    private TextView systemName;
-    private TextView fuelValue;
     private ConfigurationViewModel viewModel;
 
     private Button leftArrow;
     private Button rightArrow;
-    private Button buyButton;
-    private Button sellButton;
-    private Button market;
-    private Button holdButton;
-    private Button travelButton;
 
     private final int BUY = 1;
     private final int SELL = 0;
     private final int HOLD = 2;
-    private List<SolarSystem> solarSystemsArray;
 
 
     @Override
@@ -63,27 +52,27 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         getSupportActionBar().hide();
         setContentView(R.layout.universe_generation_activity);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
-        chart = (ScatterChart) findViewById(R.id.scatterChart);
-        sizeValue = (TextView) findViewById(R.id.sizeValue);
-        techLevelValue = (TextView) findViewById(R.id.techLevelValue);
-        governmentValue = (TextView) findViewById(R.id.governmentValue);
-        resourceValue = (TextView) findViewById(R.id.resourceValue);
-        creditsValue = (TextView) findViewById(R.id.creditsValue);
-        fuelValue = (TextView) findViewById(R.id.fuelValue);
-        distanceValue = (TextView) findViewById(R.id.distanceValue);
-        systemName = (TextView) findViewById(R.id.systemName);
-        buyButton = findViewById(R.id.buyButton);
-        sellButton = findViewById(R.id.sellButton);
-        holdButton = findViewById(R.id.holdButton);
-        market = findViewById(R.id.button5);
-        travelButton = findViewById(R.id.travelButton);
+        ScatterChart chart = findViewById(R.id.scatterChart);
+        TextView sizeValue = findViewById(R.id.sizeValue);
+        techLevelValue = findViewById(R.id.techLevelValue);
+        TextView governmentValue = findViewById(R.id.governmentValue);
+        resourceValue = findViewById(R.id.resourceValue);
+        creditsValue = findViewById(R.id.creditsValue);
+        TextView fuelValue = findViewById(R.id.fuelValue);
+        distanceValue = findViewById(R.id.distanceValue);
+        TextView systemName = findViewById(R.id.systemName);
+        Button buyButton = findViewById(R.id.buyButton);
+        Button sellButton = findViewById(R.id.sellButton);
+        Button holdButton = findViewById(R.id.holdButton);
+        Button market = findViewById(R.id.button5);
+        Button travelButton = findViewById(R.id.travelButton);
 
 
 
         Universe u = Universe.getInstance();
 
 
-        solarSystemsArray = u.getPlanets();
+        List<SolarSystem> solarSystemsArray = u.getPlanets();
 
         List<Entry> location = new ArrayList<Entry>();
         float x;
@@ -101,11 +90,11 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         //Assigning random solar system in universe to player
         SolarSystem s = viewModel.getPlayer().getSystem();
         Player player = viewModel.getPlayer();
-        player.setUniverse(u);
         String fuelLevel = "" + player.getFuelLevel();
         fuelValue.setText(fuelLevel);
         String playerCredits = "" + player.getMoney();
         creditsValue.setText(playerCredits);
+        Log.i("playerDebug", viewModel.getPlayer().toString());
         systemName.setText(viewModel.getPlayer().getSystem().getSystemName());
         techLevelValue.setText(s.getTechLevel().toString());
         resourceValue.setText(s.getResources().toString());
@@ -136,6 +125,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         chart.invalidate();
 
         sellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
                 transactionIntent.putExtra("TRANSACTION", SELL);
@@ -145,6 +135,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         });
 
         buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
                 transactionIntent.putExtra("TRANSACTION", BUY);
@@ -152,6 +143,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
             }
         });
         holdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent transactionIntent = new Intent(UniverseGenerationActivity.this, MarketActivity.class);
                 transactionIntent.putExtra("TRANSACTION", HOLD);
@@ -160,6 +152,7 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
         });
 
         travelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent travelIntent = new Intent(UniverseGenerationActivity.this, TravelActivity.class);
 
@@ -198,6 +191,8 @@ public class UniverseGenerationActivity extends AppCompatActivity implements OnC
 
     }
 
+
+    @Override
     protected void onResume() {
 
         super.onResume();

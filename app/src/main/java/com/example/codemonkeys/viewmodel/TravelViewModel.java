@@ -9,12 +9,13 @@ import com.example.codemonkeys.model.Model;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.PlayerInteractor;
 import com.example.codemonkeys.model.SolarSystem;
+import com.example.codemonkeys.model.Universe;
 
 
 import java.util.List;
 
 public class TravelViewModel extends AndroidViewModel {
-    private PlayerInteractor interactor;
+    private final PlayerInteractor interactor;
 
     public TravelViewModel(@NonNull Application application) {
         super(application);
@@ -22,7 +23,7 @@ public class TravelViewModel extends AndroidViewModel {
     }
 
     public List<SolarSystem> getSolarSystems() {
-        return interactor.getPlayer().getUniverse().getPlanets();
+        return Universe.getInstance().getPlanets();
     }
 
 }

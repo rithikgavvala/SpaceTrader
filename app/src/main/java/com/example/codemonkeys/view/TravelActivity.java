@@ -25,13 +25,12 @@ import com.example.codemonkeys.viewmodel.TravelViewModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class TravelActivity extends AppCompatActivity {
     public static final String SOLARSYSTEM_DATA = "SOLARSYSTEM_DATA";
 
-    private TextView travelMessage;
-    private TravelAdapter travelAdapter;
     private ConfigurationViewModel viewModel;
 
     @Override
@@ -44,12 +43,12 @@ public class TravelActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        travelMessage = findViewById(R.id.travelMessage);
-        if(viewModel.getPlayer().getTravelList().size() == 1){
+        TextView travelMessage = findViewById(R.id.travelMessage);
+        if (getTravelList().size() == 1) {
             travelMessage.setVisibility(View.VISIBLE);
         }else{
             travelMessage.setVisibility(View.INVISIBLE);
-            travelAdapter = new TravelAdapter();
+            TravelAdapter travelAdapter = new TravelAdapter();
             recyclerView.setAdapter(travelAdapter);
             travelAdapter.setOnSolarSystemClickListener(new TravelAdapter.OnSolarSystemClickListener() {
                 @Override
@@ -57,7 +56,7 @@ public class TravelActivity extends AppCompatActivity {
                     Player p = viewModel.getPlayer();
                     SolarSystem s = solarSys;
 
-                    int distance = p.calcDistance(p.getSystem(), s);
+                    int distance = calcDistance(p.getSystem(), s);
                     int parsecs = distance / 7;
                     p.setFuelLevel(p.getFuelLevel() - parsecs);
 
@@ -66,7 +65,7 @@ public class TravelActivity extends AppCompatActivity {
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                         toast.show();
                     }else{
-                        ArrayList<Class> activityList = new ArrayList<>();
+                        List<Class> activityList = new ArrayList<>();
                         activityList.add(RandomEventActivity.class);
                         activityList.add(UniverseGenerationActivity.class);
 
@@ -113,6 +112,32 @@ public class TravelActivity extends AppCompatActivity {
 
     }
 
+    public List<SolarSystem> getTravelList() {
+        List<SolarSystem> travelList = new ArrayList<>();
+        Universe u = Universe.getInstance();
+        List<SolarSystem> currPlanets = new ArrayList<>();
+        currPlanets = u.getPlanets();
+        Player p = viewModel.getPlayer();
+        for (int i = 0; i < currPlanets.size(); i++) {
+            if (calcDistance(currPlanets.get(i), p.getSystem()) < 5 * p.getSpaceship().getParsecs()
+                    && p.getFuelLevel() > calcDistance(currPlanets.get(i), p.getSystem()) / 6) {
+                travelList.add(currPlanets.get(i));
+            }
+        }
+        return travelList;
+    }
+
+    public int calcDistance(SolarSystem sys1, SolarSystem sys2) {
+        int difX = sys1.getLocation().getX() - sys2.getLocation().getX();
+        int difY = sys1.getLocation().getY() - sys2.getLocation().getY();
+
+        double xSquare = Math.pow(difX, 2);
+        double ySquare = Math.pow(difY, 2);
+
+        double distance = Math.pow(xSquare + ySquare, 0.5);
+        return Math.abs((int) distance);
+
+    }
 
 
 }

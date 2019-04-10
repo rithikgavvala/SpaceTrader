@@ -13,7 +13,7 @@ import com.example.codemonkeys.model.SolarSystem;
 import java.util.List;
 
 public class MarketViewModel  extends AndroidViewModel {
-    private MarketInteractor interactor;
+    private final MarketInteractor interactor;
 
     public MarketViewModel(@NonNull Application application) {
         super(application);

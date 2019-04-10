@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolarSystem implements Serializable {
-    private String systemName;
+    private final String systemName;
     private Location location;
     private TechLevel techLevel;
     private Resources resources;
-    private List<TradeGood> listofResources;
+    private final List<TradeGood> listofResources;
 
 
     public SolarSystem(String systemName, Location loc, TechLevel tl, Resources pol) {
@@ -22,6 +22,11 @@ public class SolarSystem implements Serializable {
         this.location = loc;
         this.listofResources = findGoodsAvailabletoBuy();
 
+    }
+
+    public SolarSystem() {
+        systemName = "";
+        listofResources = null;
     }
 
     public Location getLocation() {
@@ -62,7 +67,7 @@ public class SolarSystem implements Serializable {
             if(techLevel.getRank() >= t.getMTLP()){
                 TradeGood nt = new TradeGood(t);
                 nt.generatePrice(this);
-                //Log.i("SYSTEM INFO", "Rank: " + this.techLevel.getRank());
+                // Log.i("SYSTEM INFO", "Rank: " + this.techLevel.getRank());
                 list.add(nt);
             }
         }

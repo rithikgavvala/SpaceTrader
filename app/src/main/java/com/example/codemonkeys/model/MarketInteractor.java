@@ -1,6 +1,7 @@
 package com.example.codemonkeys.model;
 
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 public class MarketInteractor {
 
-    private Repository myRepository;
+    private final Repository myRepository;
 
     public MarketInteractor(Repository repo) {
         myRepository = repo;
@@ -27,7 +28,7 @@ public class MarketInteractor {
     public List<TradeGood> getSellTradeGoods() {
         Player p = myRepository.getPlayer();
         Spaceship s = p.getSpaceship();
-        LinkedList<TradeGood> r = new LinkedList<>(s.getCargoList().keySet());
+        Deque<TradeGood> r = new LinkedList<>(s.getCargoList().keySet());
         SolarSystem system = p.getSystem();
         LinkedList<TradeGood> i = new LinkedList<TradeGood>();
         for (TradeGood t : system.findGoodsAvailabletoBuy()) {

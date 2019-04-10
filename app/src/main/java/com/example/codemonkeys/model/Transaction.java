@@ -1,6 +1,8 @@
 package com.example.codemonkeys.model;
 
-public class Transaction {
+import java.io.Serializable;
+
+public class Transaction implements Serializable {
 
 
     public int buy(Player p, TradeGood t, int quantity) {

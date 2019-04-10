@@ -48,9 +48,23 @@ public class Player implements Serializable {
     private int credits;
     private Spaceship ship;
     private Universe universe;
+    private SolarSystem system;
 
     private int fuelLevel;
 
+    public boolean isLoaded() {
+        return loaded;
+    }
+
+    public void setLoaded(boolean loaded) {
+        this.loaded = loaded;
+    }
+
+    private boolean loaded;
+
+    public Player() {
+
+    }
     public Player(String name, int pil, int fight, int trad, int engine, String diff) {
         characterName = name;
         pilotSkill = pil;
@@ -62,19 +76,20 @@ public class Player implements Serializable {
         this.ship = Spaceship.Gnat;
         money = 1000;
         fuelLevel = ship.getParsecs();
+        loaded = false;
     }
 
     public int getFuelLevel() {
         return fuelLevel;
     }
 
-    public Universe getUniverse() {
-        return universe;
-    }
+//    public Universe getUniverse() {
+//        return universe;
+//    }
 
-    public void setUniverse(Universe universe) {
-        this.universe = universe;
-    }
+//    public void setUniverse(Universe universe) {
+//        this.universe = universe;
+//    }
 
     public void setEngineerSkill(int engineerSkill) {
         this.engineerSkill = engineerSkill;
@@ -104,14 +119,13 @@ public class Player implements Serializable {
         this.ship = ship;
     }
 
-    private SolarSystem system;
     private double money;
 
     public void setFuelLevel(int fuelLevel) {
         this.fuelLevel = fuelLevel;
     }
     public void updateSolarSystem(SolarSystem s){
-        Log.d("Solar System Player",s.getSystemName());
+//        Log.d("Solar System Player",s.getSystemName());
         this.system = s;
     }
 
@@ -146,30 +160,7 @@ public class Player implements Serializable {
                 + ", and engineer skill of " + engineerSkill;
     }
 
-    public List<SolarSystem> getTravelList(){
-        List<SolarSystem> travelList = new ArrayList<>();
-        Universe u = Universe.getInstance();
-        List<SolarSystem> currPlanets = new ArrayList<>();
-        currPlanets = u.getPlanets();
 
-        for(int i = 0; i < currPlanets.size(); i++){
-            if(calcDistance(currPlanets.get(i), system)  < 5 * ship.getParsecs()
-                    && fuelLevel  > calcDistance(currPlanets.get(i), system) / 6){
-                travelList.add(currPlanets.get(i));
-            }
-        }
-        return travelList;
-    }
 
-    public int calcDistance(SolarSystem sys1, SolarSystem sys2) {
-        int difX = sys1.getLocation().getX() - sys2.getLocation().getX();
-        int difY = sys1.getLocation().getY() - sys2.getLocation().getY();
 
-        double xSquare = Math.pow(difX, 2);
-        double ySquare = Math.pow(difY, 2);
-
-        double distance = Math.pow(xSquare + ySquare, 0.5);
-        return Math.abs((int) distance);
-
-    }
 }

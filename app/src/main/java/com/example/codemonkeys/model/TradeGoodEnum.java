@@ -17,12 +17,12 @@ public enum TradeGoodEnum {
     Narcotics(5, 0, 5, 3500, -125, 150),
     Robots(6, 4, 7, 5000, -150, 100);
 
-    private double basePrice;
-    private int MTLP;
-    private int MTLU;
-    private int TTP;
-    private int IPL;
-    private int var;
+    private final double basePrice;
+    private final int MTLP;
+    private final int MTLU;
+    private final int TTP;
+    private final int IPL;
+    private final int var;
     private boolean IE;
     private boolean CR;
     private boolean ER;

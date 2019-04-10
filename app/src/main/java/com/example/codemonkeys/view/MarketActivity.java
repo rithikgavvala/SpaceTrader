@@ -35,10 +35,7 @@ public class MarketActivity extends AppCompatActivity {
      * the adapter for translating List of student into display in recycler view
      */
     private TransactionAdapter adapter;
-    private Intent intent;
     private final int BUY = 1;
-    private final int SELL = 0;
-    private final int TRADE = 2;
     private TextView itemMessage;
 
 
@@ -47,7 +44,7 @@ public class MarketActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transaction_activity);
-        intent = getIntent();
+        Intent intent = getIntent();
 
         itemMessage = findViewById(R.id.itemMessage);
         itemMessage.setVisibility(View.INVISIBLE);
@@ -83,6 +80,8 @@ public class MarketActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        int TRADE = 2;
+        int SELL = 0;
         if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
             List<TradeGood> listOfTradeGoods = viewModel.getBuyTradeGoods();
             if (listOfTradeGoods.size() == 0) {

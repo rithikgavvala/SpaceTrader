@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Repository implements Serializable {
     private Player currentPlayer;
-    private List<TradeGood> allTradeGoods;
+    private final List<TradeGood> allTradeGoods;
     private List<SolarSystem> solarSystems;
 
     public Repository() {
