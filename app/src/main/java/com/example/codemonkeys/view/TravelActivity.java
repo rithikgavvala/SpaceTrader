@@ -71,6 +71,7 @@ public class TravelActivity extends AppCompatActivity {
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 600);
                         toast.show();
                     }else{
+                        viewModel.getPlayer().setSystem(solarSys);
                         List<Class> activityList = new ArrayList<>();
                         activityList.add(RandomEventActivity.class);
                         activityList.add(UniverseGenerationActivity.class);
