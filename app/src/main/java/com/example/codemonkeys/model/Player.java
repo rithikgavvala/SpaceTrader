@@ -1,10 +1,6 @@
 package com.example.codemonkeys.model;
 
-import android.util.Log;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Player implements Serializable {
     public void setSystem(SolarSystem system) {
@@ -73,7 +69,7 @@ public class Player implements Serializable {
         engineerSkill = engine;
         difficulty = diff;
         credits = 1000;
-        this.ship = Spaceship.Gnat;
+        this.ship = new Spaceship(SpaceshipEnum.Gnat);
         money = 1000;
         fuelLevel = ship.getParsecs();
         loaded = false;
@@ -140,6 +136,7 @@ public class Player implements Serializable {
     public Spaceship getSpaceship(){
         return ship;
     }
+
 
     public double getMoney(){
         return money;

@@ -1,10 +1,11 @@
 package com.example.codemonkeys.model;
 
 
+import android.util.Log;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Provide operations associated with Courses
@@ -21,14 +22,16 @@ public class MarketInteractor {
 
     public List<TradeGood> getBuyTradeGoods() {
         Player p = myRepository.getPlayer();
+        Log.d("PLAYER FIREBASE: ", p.toString());
         SolarSystem s = p.getSystem();
+        Log.d("SOLARSYSTEM FIREBASE: ", s.getSystemName());
         return s.getListofResources();
     }
 
     public List<TradeGood> getSellTradeGoods() {
         Player p = myRepository.getPlayer();
         Spaceship s = p.getSpaceship();
-        Deque<TradeGood> r = new LinkedList<>(s.getCargoList().keySet());
+        Deque<TradeGood> r = new LinkedList<TradeGood>(s.getActualCargoList().values());
         SolarSystem system = p.getSystem();
         LinkedList<TradeGood> i = new LinkedList<TradeGood>();
         for (TradeGood t : system.findGoodsAvailabletoBuy()) {
@@ -42,7 +45,7 @@ public class MarketInteractor {
     public List<TradeGood> getAllHoldGoods() {
         Player p = myRepository.getPlayer();
         Spaceship s = p.getSpaceship();
-        return new LinkedList<TradeGood>(s.getCargoList().keySet());
+        return new LinkedList<TradeGood>(s.getActualCargoList().values());
     }
 
 

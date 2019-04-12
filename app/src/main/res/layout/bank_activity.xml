@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteY="48dp" />
 
     <TextView
-        android:id="@+id/loan_label3"
+        android:id="@+id/insurance_label"
         android:layout_width="132dp"
         android:layout_height="32dp"
         android:fontFamily="@font/roboto_bold"
@@ -40,7 +40,7 @@
         tools:layout_editor_absoluteY="93dp" />
 
     <TextView
-        android:id="@+id/loan_label"
+        android:id="@+id/max_loan_label"
         android:layout_width="222dp"
         android:layout_height="0dp"
         android:fontFamily="@font/roboto_bold"

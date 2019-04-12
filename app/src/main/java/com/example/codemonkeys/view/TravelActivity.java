@@ -39,17 +39,23 @@ public class TravelActivity extends AppCompatActivity {
         setContentView(R.layout.travel_activity);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
+
         RecyclerView recyclerView = findViewById(R.id.planet_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
+        List<SolarSystem> travelList = getTravelList(Universe.getInstance().getPlanets());
+        Log.d("TRAVEL LIST:", travelList.toString());
         TextView travelMessage = findViewById(R.id.travelMessage);
-        if (getTravelList().size() == 1) {
+
+        if (travelList.size() == 1) {
             travelMessage.setVisibility(View.VISIBLE);
         }else{
             travelMessage.setVisibility(View.INVISIBLE);
             TravelAdapter travelAdapter = new TravelAdapter();
+            travelAdapter.setSolarSystemList(travelList);
             recyclerView.setAdapter(travelAdapter);
+
+
             travelAdapter.setOnSolarSystemClickListener(new TravelAdapter.OnSolarSystemClickListener() {
                 @Override
                 public void onSolarSystemClicked(SolarSystem solarSys) {
@@ -112,11 +118,8 @@ public class TravelActivity extends AppCompatActivity {
 
     }
 
-    public List<SolarSystem> getTravelList() {
+    public List<SolarSystem> getTravelList(List<SolarSystem> currPlanets) {
         List<SolarSystem> travelList = new ArrayList<>();
-        Universe u = Universe.getInstance();
-        List<SolarSystem> currPlanets = new ArrayList<>();
-        currPlanets = u.getPlanets();
         Player p = viewModel.getPlayer();
         for (int i = 0; i < currPlanets.size(); i++) {
             if (calcDistance(currPlanets.get(i), p.getSystem()) < 5 * p.getSpaceship().getParsecs()

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.codemonkeys.R;
 import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.Spaceship;
+import com.example.codemonkeys.model.SpaceshipEnum;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
 
@@ -37,7 +38,7 @@ public class RandomEventActivity extends AppCompatActivity {
 
         int clicks = (int) (Math.random() * 20);
 
-        final Spaceship randShip = Spaceship.values()[(int)(Math.random() * Spaceship.values().length)];
+        final SpaceshipEnum randShip = SpaceshipEnum.values()[(int)(Math.random() * SpaceshipEnum.values().length)];
         System.out.println(randShip.getName());
 
 

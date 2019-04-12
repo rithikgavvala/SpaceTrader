@@ -1,6 +1,5 @@
 package com.example.codemonkeys.view;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,18 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.codemonkeys.R;
-import com.example.codemonkeys.model.Player;
 import com.example.codemonkeys.model.SolarSystem;
-import com.example.codemonkeys.model.Universe;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
 public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.SolarSystemViewHolder> {
 
-    private List<SolarSystem> SolarSystemList;
+    private List<SolarSystem> solarSystemList;
 
     private OnSolarSystemClickListener listener;
 
@@ -42,11 +38,11 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.SolarSyste
     @Override
     public void onBindViewHolder(@NonNull SolarSystemViewHolder holder, int position) {
 
-        SolarSystem SolarSystem = SolarSystemList.get(position);
+        SolarSystem SolarSystem = solarSystemList.get(position);
 
 
 
-        Log.d("APP", "Binding: " + position + " " + SolarSystemList.get(position));
+        Log.d("APP", "Binding: " + position + " " + solarSystemList.get(position));
 
         holder.SolarSystemName.setText(SolarSystem.getSystemName());
         holder.SolarSystemTechLevel.setText(SolarSystem.getTechLevel().toString());
@@ -56,11 +52,11 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.SolarSyste
 
     @Override
     public int getItemCount() {
-        return SolarSystemList.size();
+        return solarSystemList.size();
     }
 
     public void setSolarSystemList(List<SolarSystem> list) {
-        SolarSystemList = list;
+        solarSystemList = list;
         notifyDataSetChanged();
     }
 
@@ -90,7 +86,7 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.SolarSyste
                     int position = getAdapterPosition();
 
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onSolarSystemClicked(SolarSystemList.get(position));
+                        listener.onSolarSystemClicked(solarSystemList.get(position));
                     }
                 }
             });

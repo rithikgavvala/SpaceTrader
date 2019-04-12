@@ -1,54 +1,37 @@
 package com.example.codemonkeys.model;
 
-import java.io.Serializable;
+import android.util.Log;
+
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-public enum Spaceship {
-    Flea("Flea", 20, 10, 2),
-    Gnat("Gnat", 15, 15, 7),
-    Firefly("Firefly", 17, 20, 7),
-    Mosquito("Mosquito", 13, 15, 25),
-    Bumblebee("Bumblebee", 15, 25, 10),
-    Beetle("Beetle", 14, 50, 5),
-    Hornet("Hornet", 16, 20, 16),
-    Grasshopper("Grasshopper", 15, 30, 12),
-    Termite("Termite", 13, 60, 20),
-    Wasp("Wasp", 14, 35, 20);
+public class Spaceship {
 
-    public int getCargoMax() {
-        return cargoMax;
-    }
-
-    public void setCargoMax(int cargoMax) {
-        this.cargoMax = cargoMax;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setCargoList(HashMap<TradeGood, Integer> cargoList) {
-        this.cargoList = cargoList;
-    }
-
-    public int getSizeCargoList() {
-        return sizeCargoList;
-    }
-
-    public int getParsecs(){
-        return parsecs;
-    }
 
     private String name;
     private int hullStrength;
     private int parsecs;
     private int cargoMax;
-    private Integer quantity;
-    private HashMap<TradeGood, Integer> cargoList;
+    private int quantity;
+    private HashMap<String, Integer> cargoList;
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public HashMap<String, TradeGood> getActualCargoList() {
+        return actualCargoList;
+    }
+
+    public void setActualCargoList(HashMap<String, TradeGood> actualCargoList) {
+        this.actualCargoList = actualCargoList;
+    }
+
+    private HashMap<String, TradeGood> actualCargoList;
     private int sizeCargoList;
+
+
+
 
     Spaceship(String name, int parsecs, int cargoMax, int hullStrength){
         this.name = name;
@@ -57,9 +40,24 @@ public enum Spaceship {
         this.hullStrength = hullStrength;
         sizeCargoList = 0;
         quantity = 0;
-        cargoList = new HashMap<TradeGood, Integer>();
+        cargoList = new HashMap<String, Integer>();
     }
 
+    Spaceship(SpaceshipEnum se){
+        this.name = se.getName();
+        this.parsecs = se.getParsecs();
+        this.cargoMax = se.getCargoMax();
+        this.hullStrength = se.getHullStrength();
+        sizeCargoList = 0;
+        cargoList = new HashMap<String, Integer>();
+        actualCargoList = new HashMap<>();
+
+
+    }
+
+    Spaceship() {
+
+    }
     public String getName() {
         return name;
     }
@@ -76,16 +74,19 @@ public enum Spaceship {
         this.hullStrength = hullStrength;
     }
 
-    public Map<TradeGood, Integer> getCargoList() {
+    public Map<String, Integer> getCargoList() {
         return cargoList;
     }
 
     public void remove(TradeGood t, int quantity) {
-        int currQuantity = cargoList.get(t);
+        int currQuantity = cargoList.get(t.getName());
         if (quantity >= currQuantity) {
-            cargoList.remove(t);
+            actualCargoList.remove(t.getName());
+            cargoList.remove(t.getName());
+
         } else {
-            cargoList.put(t, currQuantity - quantity);
+            cargoList.put(t.getName(), currQuantity - quantity);
+
         }
         this.quantity -= quantity;
     }
@@ -93,7 +94,7 @@ public enum Spaceship {
     public void setParsecs(int parsecs) {
         this.parsecs = parsecs;
     }
-    public void setCargoLoad(HashMap<TradeGood, Integer> map) {
+    public void setCargoLoad(HashMap<String, Integer> map) {
         cargoList = map;
     }
 
@@ -112,6 +113,36 @@ public enum Spaceship {
 
     public void addToList(TradeGood t, int quantity) {
         this.quantity += quantity;
-        cargoList.put(t, quantity);
+        cargoList.put(t.getName(), quantity);
+        actualCargoList.put(t.getName(), t);
     }
+    public int getCargoMax() {
+        return cargoMax;
+    }
+
+    public void setCargoMax(int cargoMax) {
+        this.cargoMax = cargoMax;
+    }
+
+//    public void setQuantity(Integer quantity) {
+//        this.quantity = quantity;
+//    }
+
+    public void setCargoList(HashMap<String, Integer> cargoList) {
+        this.cargoList = cargoList;
+    }
+
+    public int getSizeCargoList() {
+        return sizeCargoList;
+    }
+
+    public int getParsecs(){
+        return parsecs;
+    }
+
+
+
+
+
+
 }

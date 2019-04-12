@@ -60,8 +60,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     public void setTradeGoodsList(List<TradeGood> items) {
         sellItemsList = items;
+
         notifyDataSetChanged();
     }
+
 
 
     /**

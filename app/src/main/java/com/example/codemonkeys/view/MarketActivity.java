@@ -82,8 +82,11 @@ public class MarketActivity extends AppCompatActivity {
 
         int TRADE = 2;
         int SELL = 0;
+
+        Log.d("MORE PLAYER FIREBASE: ", viewModel.getAllHoldGoods().toString());
         if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
             List<TradeGood> listOfTradeGoods = viewModel.getBuyTradeGoods();
+
             if (listOfTradeGoods.size() == 0) {
                 itemMessage.setVisibility(View.VISIBLE);
 
