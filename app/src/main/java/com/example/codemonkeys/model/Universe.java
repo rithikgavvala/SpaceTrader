@@ -71,7 +71,6 @@ public class Universe {
     private List<Location> locations;
     private List<TechLevel> actualLevels;
     private List<Resources> actualResources;
-
     private List<SolarSystem> solarSystems;
 
 

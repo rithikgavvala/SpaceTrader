@@ -34,7 +34,7 @@ public class MarketInteractor {
         Deque<TradeGood> r = new LinkedList<TradeGood>(s.getActualCargoList().values());
         SolarSystem system = p.getSystem();
         LinkedList<TradeGood> i = new LinkedList<TradeGood>();
-        for (TradeGood t : system.findGoodsAvailabletoBuy()) {
+        for (TradeGood t : system.getListofResources()) {
             if (t.getMTLU() <= p.getSystem().getTechLevel().getRank() && r.contains(t)) {
                 i.add(t);
             }

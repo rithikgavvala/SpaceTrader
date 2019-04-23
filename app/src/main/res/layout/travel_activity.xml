@@ -23,6 +23,8 @@
         android:text="@string/no_places_to_travel"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
-        android:textSize="30sp" />
+        android:textSize="24sp"
+        app:layout_anchor="@+id/planet_list"
+        app:layout_anchorGravity="left|center" />
 
 </android.support.design.widget.CoordinatorLayout>
