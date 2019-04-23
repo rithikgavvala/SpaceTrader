@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ConfigurationActivity extends AppCompatActivity{
     private ConfigurationViewModel viewModel;
@@ -86,19 +87,20 @@ public class ConfigurationActivity extends AppCompatActivity{
         SeekBar.OnSeekBarChangeListener mlistener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                String p = String.format(Locale.US, "%d", progress);
                 int id = seekBar.getId();
                 if (id == R.id.pilot_bar) {
                     pilotProgress = progress;
-                    pilotSkillTextView.setText("" + progress);
+                    pilotSkillTextView.setText(p);
                 } else if (id == R.id.fighter_bar) {
                     fighterProgress = progress;
-                    fighterSkillTextView.setText("" + progress);
+                    fighterSkillTextView.setText(p);
                 } else if (id == R.id.trader_bar) {
                     traderProgress = progress;
-                    traderSkillTextView.setText("" + progress);
+                    traderSkillTextView.setText(p);
                 } else if (id == R.id.engineer_bar) {
                     engineerProgress = progress;
-                    engineerSkillTextView.setText("" + progress);
+                    engineerSkillTextView.setText(p);
                 }
             }
 

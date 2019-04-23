@@ -13,6 +13,7 @@ import com.example.codemonkeys.model.TradeGood;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Adapts the list of students in the model to be a list of graphical elements in view
@@ -48,7 +49,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         Log.d("APP", "Binding: " + position + " " + sellItemsList.get(position));
 
         holder.name.setText(item.getName());
-        holder.price.setText(item.getCurrentPrice() + " credits");
+        //holder.price.setText(item.getCurrentPrice() + " credits");
+        String credits = String.format(Locale.US, "%f credits", item.getCurrentPrice());
+        holder.price.setText(credits);
 
 
     }

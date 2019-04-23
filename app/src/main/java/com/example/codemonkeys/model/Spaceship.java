@@ -74,7 +74,7 @@ public class Spaceship {
         this.hullStrength = hullStrength;
     }
 
-    public Map<String, Integer> getCargoList() {
+    public HashMap<String, Integer> getCargoList() {
         return cargoList;
     }
 

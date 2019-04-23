@@ -31,7 +31,7 @@ public class TradeGood implements Serializable {
         this.var = Var;
     }
 
-    TradeGood(TradeGoodEnum te) {
+    public TradeGood(TradeGoodEnum te) {
         this.MTLP = te.getMTLP();
         this.MTLU = te.getMTLU();
         this.TTP = te.getTTP();

@@ -1,13 +1,37 @@
 <resources>
     <string name="app_name">SpaceTrader</string>
-    <string-array name="country_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
-    </string-array>
+    <string name="load">Load</string>
+    <string name="NEW">NEW</string>
+    <string name="textview">TextView</string>
+    <string name="_0">0</string>
+    <string name="button">Button</string>
+    <string name="player_configuration">Player Configuration</string>
+    <string name="skill_point_allocation">Skill Point Allocation</string>
+    <string name="pilot">Pilot</string>
+    <string name="fighter">Fighter</string>
+    <string name="trader">Trader</string>
+    <string name="engineer">Engineer</string>
+    <string name="name">Name</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="create">Create</string>
+    <string name="ignore">Ignore</string>
+    <string name="trade">Trade</string>
+    <string name="cargo_hold_has_0_goods">Cargo hold has 0 goods.</string>
+    <string name="no_places_to_travel">No places to travel</string>
+    <string name="hold_goods">HOLD GOODS</string>
+    <string name="greaterThan"><![CDATA[>]]></string>
+    <string name="test">test</string>
+    <string name="target_system">Target System:</string>
+    <string name="targetSystem">Target System</string>
+    <string name="size">Size:</string>
+    <string name="tech_level">Tech Level:</string>
+    <string name="government">Government:</string>
+    <string name="resource">Resource:</string>
+    <string name="credits">Credits:</string>
+    <string name="fuel">Fuel:</string>
+    <string name="distance">Distance:</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="travel">Travel</string>
+    <string name="attack">attack</string>
 </resources>

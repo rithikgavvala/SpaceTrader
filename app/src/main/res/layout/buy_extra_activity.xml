@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/transaction_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
@@ -11,12 +10,16 @@
         android:id="@+id/itemTitle"
         android:layout_width="365dp"
         android:layout_height="86dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="136dp" />
+        app:layout_constraintEnd_toStartOf="@+id/buyAmount"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="@+id/transactionButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/amountBar"
@@ -34,7 +37,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="0"
+        android:text="@string/_0"
         android:textAlignment="textEnd"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
@@ -47,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
-        android:text="Button"
+        android:text="@string/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buyAmount" />
 </android.support.constraint.ConstraintLayout>

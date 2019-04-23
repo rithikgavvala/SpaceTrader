@@ -14,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:text="Attack"
+        android:text="@string/attack"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/encounter_message" />
@@ -26,7 +26,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:text="Ignore"
+        android:text="@string/ignore"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toEndOf="@+id/attack_button"
         app:layout_constraintTop_toBottomOf="@+id/encounter_message" />
@@ -38,7 +38,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
-        android:text="Trade"
+        android:text="@string/trade"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toEndOf="@+id/ignore_button"
         app:layout_constraintTop_toBottomOf="@+id/encounter_message" />

@@ -16,6 +16,8 @@ import com.example.codemonkeys.model.TradeGood;
 import com.example.codemonkeys.model.Transaction;
 import com.example.codemonkeys.viewmodel.ConfigurationViewModel;
 
+import java.util.Locale;
+
 public class    BuyExtraActivity extends AppCompatActivity {
     private final int BUY = 1;
     private final int SELL = 0;
@@ -44,7 +46,8 @@ public class    BuyExtraActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int id = seekBar.getId();
-                itemProgress.setText("" + progress);
+                String p = String.format(Locale.US, "%d",progress);
+                itemProgress.setText(p);
                 amountProgress = progress;
             }
 
@@ -62,9 +65,11 @@ public class    BuyExtraActivity extends AppCompatActivity {
         itemTitle.setText(item.getName());
         t = new Transaction();
         if (transactionType == BUY) {
-            transactionButton.setText("Buy");
+            String b = "Buy";
+            transactionButton.setText(b);
         } else {
-            transactionButton.setText("Sell");
+            String s = "Sell";
+            transactionButton.setText(s);
         }
 
 

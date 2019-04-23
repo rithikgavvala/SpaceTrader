@@ -83,6 +83,8 @@ public class MarketActivity extends AppCompatActivity {
         int TRADE = 2;
         int SELL = 0;
 
+        String t = "No items to sell";
+
         Log.d("MORE PLAYER FIREBASE: ", viewModel.getAllHoldGoods().toString());
         if (getIntent().getIntExtra("TRANSACTION", BUY) == BUY) {
             List<TradeGood> listOfTradeGoods = viewModel.getBuyTradeGoods();
@@ -97,7 +99,7 @@ public class MarketActivity extends AppCompatActivity {
         } else if (getIntent().getIntExtra("TRANSACTION", SELL) == SELL) {
             List<TradeGood> listOfSellGoods = viewModel.getSellTradeGoods();
             if (listOfSellGoods.size() == 0) {
-                itemMessage.setText("No items to sell");
+                itemMessage.setText(t);
                 itemMessage.setVisibility(View.VISIBLE);
 
             }
@@ -107,7 +109,7 @@ public class MarketActivity extends AppCompatActivity {
 
             List<TradeGood> listOfTradeGoods = viewModel.getSellTradeGoods();
             if (listOfTradeGoods.size() == 0) {
-                itemMessage.setText("No items to sell");
+                itemMessage.setText(t);
                 itemMessage.setVisibility(View.VISIBLE);
 
             }
