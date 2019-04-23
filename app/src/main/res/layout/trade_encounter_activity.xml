@@ -11,8 +11,8 @@
         android:id="@+id/attack_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="36dp"
         android:background="@color/colorAccent"
         android:text="@string/attack"
         android:textColor="@android:color/background_light"
@@ -24,24 +24,24 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
         android:background="@color/colorAccent"
         android:text="@string/ignore"
         android:textColor="@android:color/background_light"
         app:layout_constraintStart_toEndOf="@+id/attack_button"
         app:layout_constraintTop_toBottomOf="@+id/encounter_message" />
 
-    <Button
-        android:id="@+id/trade_button"
-        android:layout_width="109dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorAccent"
-        android:text="@string/trade"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toEndOf="@+id/ignore_button"
-        app:layout_constraintTop_toBottomOf="@+id/encounter_message" />
+    <!--<Button-->
+        <!--android:id="@+id/trade_button"-->
+        <!--android:layout_width="109dp"-->
+        <!--android:layout_height="48dp"-->
+        <!--android:layout_marginStart="24dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--android:text="@string/trade"-->
+        <!--android:textColor="@android:color/background_light"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/ignore_button"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/encounter_message" />-->
 
     <TextView
         android:id="@+id/encounter_message"

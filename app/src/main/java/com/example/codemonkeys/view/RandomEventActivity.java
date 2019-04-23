@@ -56,7 +56,7 @@ public class RandomEventActivity extends AppCompatActivity {
 
         Button attackButton = findViewById(R.id.attack_button);
         Button ignoreButton = findViewById(R.id.ignore_button);
-        Button tradeButton = findViewById(R.id.trade_button);
+        //Button tradeButton = findViewById(R.id.trade_button);
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
         Player p = viewModel.getPlayer();
         TradeGood [] tradeGoods = {new TradeGood(TradeGoodEnum.Water), new TradeGood(TradeGoodEnum.Furs), new TradeGood(TradeGoodEnum.Ore), new TradeGood(TradeGoodEnum.Games), new TradeGood(TradeGoodEnum.Firearms),new TradeGood(TradeGoodEnum.Medicine), new TradeGood(TradeGoodEnum.Machines), new TradeGood(TradeGoodEnum.Narcotics), new TradeGood(TradeGoodEnum.Robots)};
@@ -106,13 +106,13 @@ public class RandomEventActivity extends AppCompatActivity {
             }
         });
 
-        tradeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(RandomEventActivity.this, MarketActivity.class);
-                startActivity(i);
-            }
-        });
+//        tradeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(RandomEventActivity.this, MarketActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
 
 
